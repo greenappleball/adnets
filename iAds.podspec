@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
     ss.resources    = 'iAds/SmartMad/*.{png,bundle}'
     ss.preserve_paths = '**/*.a'
     ss.library = 'SmartMad'
-    ss.frameworks = 'AudioToolbox','AVFoundation','CoreLocation','CoreMotion','CoreTelephony','QuartzCore','MediaPlayer','StoreKit','SystemConfiguration','CFNetwork','MessageUI','EventKitUI','EventKit'
+    ss.frameworks = 'AudioToolbox','AVFoundation','CoreLocation','CoreMotion','CoreTelephony','QuartzCore','MediaPlayer','StoreKit','SystemConfiguration','CFNetwork','MessageUI','EventKit'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/iAds/iAds/SmartMad"' }
     ss.dependency 'iAds/SmartMadAdapter'
   end
