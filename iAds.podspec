@@ -11,6 +11,25 @@ Pod::Spec.new do |s|
   s.preserve_paths = 'iAds/Adapters'
 
 #
+# Third_Party_Source_Code
+#
+  s.subspec 'ZipArchive' do |ss|
+    ss.source_files = 'iAds/SmartMad/Third_Party_Source_Code/ZipArchive/**/*.{h,m,c,mm}'
+  end
+
+  s.subspec 'Reachability' do |ss|
+    ss.source_files = 'iAds/SmartMad/Third_Party_Source_Code/Reachability/**/*.{h,m,c,mm}'
+  end
+
+  s.subspec 'Cocoa_HTTP_Server' do |ss|
+    ss.source_files = 'iAds/SmartMad/Third_Party_Source_Code/Cocoa HTTP Server/**/*.{h,m,c,mm}'
+  end
+
+  s.subspec 'Erica_Sadun' do |ss|
+    ss.source_files = 'iAds/SmartMad/Third_Party_Source_Code/Erica Sadun/**/*.{h,m,c,mm}'
+  end
+
+#
 # Custom Adapters
 #
   s.subspec 'SmartMadAdapter' do |ss|
@@ -51,16 +70,16 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'SmartMad' do |ss|
-    ss.source_files = FileList['iAds/SmartMad/*.h'],
-      'iAds/SmartMad/Third_Party_Source_Code/ZipArchive/**/*.{h,m,c,mm}',
-      'iAds/SmartMad/Third_Party_Source_Code/Reachability/**/*.{h,m,c,mm}',
-      'iAds/SmartMad/Third_Party_Source_Code/Cocoa HTTP Server/**/*.{h,m,c,mm}',
-      'iAds/SmartMad/Third_Party_Source_Code/Erica Sadun/**/*.{h,m,c,mm}'
+    ss.source_files = FileList['iAds/SmartMad/*.h']
     ss.resources    = 'iAds/SmartMad/*.{png,bundle}'
     ss.preserve_paths = '**/*.a'
     ss.library = 'SmartMad'
     ss.frameworks = 'AudioToolbox','AVFoundation','CoreLocation','CoreMotion','CoreTelephony','QuartzCore','MediaPlayer','StoreKit','SystemConfiguration','CFNetwork','MessageUI','EventKit'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/iAds/iAds/SmartMad"' }
+    ss.dependency 'iAds/ZipArchive'
+    ss.dependency 'iAds/Erica_Sadun'
+#    ss.dependency 'iAds/Reachability'
+    ss.dependency 'iAds/Cocoa_HTTP_Server'
     ss.dependency 'iAds/SmartMadAdapter'
   end
 
