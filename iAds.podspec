@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
   s.author = {'PI' => 'support@pi.com'}
-  s.source = {:git => 'https://github.com/greenappleball/specs.git'}
+  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git'}
   s.homepage = 'https://developers.google.com/mobile-ads-sdk/download#downloadios'
 #  s.source_files  = 'iAds/**/*.{h,m,c,mm}'
   s.preserve_paths = 'iAds/Adapters'
