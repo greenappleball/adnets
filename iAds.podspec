@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
     ss.frameworks = 'SystemConfiguration','MobileCoreServices','CFNetwork','UIKit','Foundation','CoreGraphics','MediaPlayer','QuartzCore','AdSupport'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/iAds/iAds/MdotM"' }
     ss.dependency 'iAds/MdotMAdapter'
-    ss.dependency 'ASIHTTPRequest'
+#    ss.dependency 'ASIHTTPRequest'
   end
 
   s.subspec 'Smaato' do |ss|
