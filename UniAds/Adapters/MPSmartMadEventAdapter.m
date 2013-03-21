@@ -8,7 +8,6 @@
 
 #import "MPSmartMadEventAdapter.h"
 #import "MPLogging.h"
-#import "Helpers.h"
 
 #pragma mark - Ad definitions
 
@@ -17,6 +16,8 @@
 #define kAppID      @"id"
 #define kBanner1    @"banner1"
 #define kBanner2    @"banner2"
+#define kIdiom      @"idiom"
+#define vPhoneIdiom @"phone"
 
 @interface MPSmartMadEventAdapter () {
     SMAdBannerView* _adBannerView;
@@ -47,6 +48,12 @@
     [_adBannerView setDelegate:nil];
     [_adBannerView release];
     _adBannerView = nil;
+}
+
+- (BOOL)is_iPad
+{
+    NSString* idiom = self.params[kIdiom];
+    return (idiom && [idiom isEqualToString:vPhoneIdiom]);
 }
 
 #pragma	mark - super
@@ -115,7 +122,7 @@
 
 -(SMAdBannerSizeType)adMeasure{
     SMAdBannerSizeType result = PHONE_AD_BANNER_MEASURE_AUTO;
-    if (is_iPad()) {
+    if ([self is_iPad]) {
         result = TABLET_AD_BANNER_MEASURE_728X90;
     }
     return result;
