@@ -18,8 +18,10 @@
 #define AD_DOMAIN               @"com.MdotM_iOS_SDK"
 
 #define kKey                    @"key"
+#define kIdiom      @"idiom"
+#define vPhoneIdiom @"phone"
 
-#define DEFAULT_FRAME (is_iPad() ? BANNER_728_90 : BANNER_320_50)
+#define DEFAULT_FRAME ([self is_iPad] ? BANNER_728_90 : BANNER_320_50)
 
 
 @interface MPMdotMEventAdapter () <MdotMAdViewDelegate> {
@@ -65,6 +67,12 @@
         result = key;
     }
     return result;
+}
+
+- (BOOL)is_iPad
+{
+    NSString* idiom = self.params[kIdiom];
+    return (idiom && [idiom isEqualToString:vPhoneIdiom]);
 }
 
 #pragma	mark - super

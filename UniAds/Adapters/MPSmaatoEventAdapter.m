@@ -11,7 +11,6 @@
 #import "SOMABannerViewDelegate.h"
 #import "SOMABannerView.h"
 #import "MPLogging.h"
-#import "Helpers.h"
 
 
 #pragma mark - Ad definitions
@@ -20,6 +19,9 @@
 
 #define kSpaceId                @"spaceId"
 #define kPublisherId            @"publisherId"
+
+#define kIdiom      @"idiom"
+#define vPhoneIdiom @"phone"
 
 
 @interface MPSmaatoEventAdapter () <SOMAAdListenerProtocol,SOMABannerViewDelegate> {
@@ -58,12 +60,12 @@
 
 - (SOMAAdDimension)dimention
 {
-    return (is_iPad() ? kSOMAAdDimensionLeaderboard : kSOMAAdDimensionDefault);
+    return ([self is_iPad] ? kSOMAAdDimensionLeaderboard : kSOMAAdDimensionDefault);
 }
 
 - (NSInteger)spaceId
 {
-    NSInteger defaultSpaceId = is_iPad() ? 65773855 : 65773854;
+    NSInteger defaultSpaceId = [self is_iPad] ? 65773855 : 65773854;
     NSInteger result = defaultSpaceId;
     NSNumber* spaceId = self.params[kSpaceId];
     if (nil != spaceId) {
@@ -81,6 +83,12 @@
         result = [publisherId integerValue];
     }
     return result;
+}
+
+- (BOOL)is_iPad
+{
+    NSString* idiom = self.params[kIdiom];
+    return (idiom && [idiom isEqualToString:vPhoneIdiom]);
 }
 
 #pragma	mark - super
