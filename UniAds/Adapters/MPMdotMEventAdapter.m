@@ -11,7 +11,6 @@
 #import "MdotMAdSizes.h"
 #import "MdotMAdView.h"
 #import "MPLogging.h"
-#import "Helpers.h"
 
 #pragma mark - Ad definitions
 
