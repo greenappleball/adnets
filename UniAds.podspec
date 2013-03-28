@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 #  s.source_files  = 'UniAds/**/*.{h,m,c,mm}'
   s.preserve_paths = 'UniAds/Adapters'
 
-  s.preferred_dependency = 'Starting_emtpy_sub'
+  s.preferred_dependency = 'UniAds'
 #
 # Empty subspec: fix adding the pod to git repos
 #
