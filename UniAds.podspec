@@ -10,11 +10,11 @@ Pod::Spec.new do |s|
 #  s.source_files  = 'UniAds/**/*.{h,m,c,mm}'
   s.preserve_paths = 'UniAds/Adapters'
 
-  s.preferred_dependency = 'UniAds'
+  s.preferred_dependency = '_UniAds_'
 #
 # Empty subspec: fix adding the pod to git repos
 #
-  s.subspec 'UniAds' do |ss|
+  s.subspec '_UniAds_' do |ss|
   end
   
 #
