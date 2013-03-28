@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 # Empty subspec: fix adding the pod to git repos
 #
   s.subspec '_UniAds_' do |ss|
-    ss.frameworks = 'iAd'
+    ss.dependency 'UniAds/iAd'
   end
   
 #
@@ -57,6 +57,7 @@ Pod::Spec.new do |s|
 #
   s.subspec 'iAd' do |ss|
     ss.dependency 'mopub-client/iAdAdapter', :podspec => 'mopub-client.podspec'
+    ss.frameworks = 'iAd'
   end
 
   s.subspec 'AdMob' do |ss|
