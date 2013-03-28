@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
 # Empty subspec: fix adding the pod to git repos
 #
   s.subspec '_UniAds_' do |ss|
+    ss.frameworks = 'iAd'
   end
   
 #
