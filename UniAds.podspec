@@ -55,7 +55,7 @@ Pod::Spec.new do |s|
 # Ads Networks specifications
 #
   s.subspec 'iAd' do |ss|
-#ss.dependency 'mopub-client/iAdAdapter', :podspec => 'mopub-client.podspec'
+    ss.dependency 'MoPubClient/iAdAdapter'
     ss.frameworks = 'iAd'
   end
 
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
     ss.library = 'GoogleAdMobAds'
     ss.frameworks = 'AudioToolbox', 'MessageUI', 'SystemConfiguration', 'CoreGraphics', 'AdSupport', 'StoreKit'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/AdMob"' }
-#   ss.dependency 'mopub-client/AdMobAdapter', :podspec => 'mopub-client.podspec'
+    ss.dependency 'MoPubClient/AdMobAdapter'
   end
 
   s.subspec 'MMSDK' do |ss|
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
     ss.library = 'MMSDK'
     ss.frameworks = 'QuartzCore','MediaPlayer','CoreGraphics','CoreLocation','MobileCoreServices','AudioToolbox','AVFoundation','SystemConfiguration','UIKit','Foundation'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/MMSDK"' }
-#   ss.dependency 'mopub-client/MillenialAdapter', :podspec => 'mopub-client.podspec'
+    ss.dependency 'MoPubClient/MillenialAdapter'
   end
 
   s.subspec 'SmartMad' do |ss|
