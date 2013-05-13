@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
     ss.library = 'GoogleAdMobAds'
     ss.frameworks = 'AudioToolbox', 'MessageUI', 'SystemConfiguration', 'CoreGraphics', 'AdSupport', 'StoreKit'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/AdMob"' }
-    ss.dependency 'mopub-client/AdMobAdapter', :podspec => 'mopub-client.podspec'
+#   ss.dependency 'mopub-client/AdMobAdapter', :podspec => 'mopub-client.podspec'
   end
 
   s.subspec 'MMSDK' do |ss|
