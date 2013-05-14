@@ -110,4 +110,6 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
+  s.dependency 'MoPubClient'
+
 end
