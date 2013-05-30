@@ -7,9 +7,9 @@
 //
 
 #import "MPSmaatoEventAdapter.h"
-#import "SOMAAdListenerProtocol.h"
-#import "SOMABannerViewDelegate.h"
-#import "SOMABannerView.h"
+#import <iSoma/SOMAAdListenerProtocol.h>
+#import <iSoma/SOMABannerViewDelegate.h>
+#import <iSoma/SOMABannerView.h>
 #import "MPLogging.h"
 
 

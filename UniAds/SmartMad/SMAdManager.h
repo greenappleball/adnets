@@ -73,7 +73,7 @@ typedef enum {
     AD_INTERSTITIAL_MEASURE_AUTO = 0,
     AD_INTERSTITIAL_MEASURE_UMAP = 1,
 }SMAdInterstitialSizeType;
-
+               
 typedef enum {
     AdSpaceTypeBanner = 1,
     AdSpaceTypeIntersitial = 2,
@@ -137,6 +137,15 @@ typedef enum {
  */
 
 + (void)setUserInformation:(NSString*)jsonUserInfo;
+
+/*!
+ @method
+ @abstract 设置channel id
+ @discussion
+ @param channelId
+ @result nil
+ */
++ (void)setChannelId:(NSString*)channelId;
 
 /*!
  @method
