@@ -60,7 +60,7 @@
 
 - (SOMAAdDimension)dimention
 {
-    return ([self is_iPhone] ? kSOMAAdDimensionLeaderboard : kSOMAAdDimensionDefault);
+    return (![self is_iPhone] ? kSOMAAdDimensionLeaderboard : kSOMAAdDimensionDefault);
 }
 
 - (NSInteger)spaceId
