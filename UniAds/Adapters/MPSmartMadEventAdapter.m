@@ -50,7 +50,7 @@
     _adBannerView = nil;
 }
 
-- (BOOL)is_iPad
+- (BOOL)is_iPhone
 {
     NSString* idiom = self.params[kIdiom];
     return (idiom && [idiom isEqualToString:vPhoneIdiom]);
@@ -122,7 +122,7 @@
 
 -(SMAdBannerSizeType)adMeasure{
     SMAdBannerSizeType result = PHONE_AD_BANNER_MEASURE_AUTO;
-    if ([self is_iPad]) {
+    if (![self is_iPhone]) {
         result = TABLET_AD_BANNER_MEASURE_728X90;
     }
     return result;

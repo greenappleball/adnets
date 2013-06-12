@@ -20,7 +20,7 @@
 #define kIdiom      @"idiom"
 #define vPhoneIdiom @"phone"
 
-#define DEFAULT_FRAME ([self is_iPad] ? BANNER_728_90 : BANNER_320_50)
+#define DEFAULT_FRAME (![self is_iPhone] ? BANNER_728_90 : BANNER_320_50)
 
 
 @interface MPMdotMEventAdapter () <MdotMAdViewDelegate> {
@@ -68,7 +68,7 @@
     return result;
 }
 
-- (BOOL)is_iPad
+- (BOOL)is_iPhone
 {
     NSString* idiom = self.params[kIdiom];
     return (idiom && [idiom isEqualToString:vPhoneIdiom]);

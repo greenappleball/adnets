@@ -65,7 +65,7 @@
 
 - (NSInteger)spaceId
 {
-    NSInteger defaultSpaceId = [self is_iPad] ? 65773855 : 65773854;
+    NSInteger defaultSpaceId = ![self is_iPhone] ? 65773855 : 65773854;
     NSInteger result = defaultSpaceId;
     NSNumber* spaceId = self.params[kSpaceId];
     if (nil != spaceId) {
@@ -85,7 +85,7 @@
     return result;
 }
 
-- (BOOL)is_iPad
+- (BOOL)is_iPhone
 {
     NSString* idiom = self.params[kIdiom];
     return (idiom && [idiom isEqualToString:vPhoneIdiom]);
