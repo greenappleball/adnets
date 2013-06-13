@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/Base'
     ss.dependency 'UniAds/MdotM'
     ss.dependency 'UniAds/Smaato'
-    ss.dependency 'UniAds/SmartMadAdapter'
+    ss.dependency 'UniAds/SmartMad'
   end
   
 #
