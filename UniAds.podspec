@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
 # Empty subspec: fix adding the pod to git repos
 #
   s.subspec 'Base' do |ss|
-    ss.dependency 'iAd'
-    ss.dependency 'AdMob'
-    ss.dependency 'MMSDK'
+    ss.dependency 'UniAds/iAd'
+    ss.dependency 'UniAds/AdMob'
+    ss.dependency 'UniAds/MMSDK'
   end
   
 #
