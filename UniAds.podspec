@@ -20,8 +20,18 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/MMSDK'
   end
 
+  s.subspec 'Pro' do |ss|
+    ss.dependency 'UniAds/iAd'
+    ss.dependency 'UniAds/AdMob'
+    ss.dependency 'UniAds/MMSDK'
+    ss.dependency 'UniAds/MdotM'
+    ss.dependency 'UniAds/Smaato'
+  end
+
   s.subspec 'All' do |ss|
-    ss.dependency 'UniAds/Base'
+    ss.dependency 'UniAds/iAd'
+    ss.dependency 'UniAds/AdMob'
+    ss.dependency 'UniAds/MMSDK'
     ss.dependency 'UniAds/MdotM'
     ss.dependency 'UniAds/Smaato'
     ss.dependency 'UniAds/SmartMad'
