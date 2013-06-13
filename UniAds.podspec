@@ -12,12 +12,19 @@ Pod::Spec.new do |s|
 
   s.preferred_dependency = 'Base'
 #
-# Empty subspec: fix adding the pod to git repos
+# Preferred subspec: fix adding the pod to git repos
 #
   s.subspec 'Base' do |ss|
     ss.dependency 'UniAds/iAd'
     ss.dependency 'UniAds/AdMob'
     ss.dependency 'UniAds/MMSDK'
+  end
+
+  s.subspec 'All' do |ss|
+    ss.dependency 'UniAds/Base'
+    ss.dependency 'UniAds/MdotM'
+    ss.dependency 'UniAds/Smaato'
+    ss.dependency 'UniAds/SmartMadAdapter'
   end
   
 #
@@ -92,6 +99,7 @@ Pod::Spec.new do |s|
 #    ss.dependency 'UniAds/Reachability'
     ss.dependency 'UniAds/Cocoa_HTTP_Server'
     ss.dependency 'UniAds/SmartMadAdapter'
+    ss.dependency 'UniAds/Base'
   end
 
   s.subspec 'MdotM' do |ss|
