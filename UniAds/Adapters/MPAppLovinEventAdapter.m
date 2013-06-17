@@ -8,6 +8,7 @@
 
 #import "MPAppLovinEventAdapter.h"
 #import "MPConstants.h"
+#import "MPLogging.h"
 
 
 @implementation MPAppLovinEventAdapter

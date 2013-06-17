@@ -7,6 +7,7 @@
 //
 
 #import "MPAppLovinInterstitialAdapter.h"
+#import "MPLogging.h"
 
 
 @implementation MPAppLovinInterstitialAdapter
@@ -20,7 +21,7 @@
                  placedAt: nil
                 andNotify: self];
 }
-
+ 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
     if (_loadedAd)

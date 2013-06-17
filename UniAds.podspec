@@ -68,6 +68,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'AppLovinAdapter' do |ss|
     ss.source_files = 'UniAds/Adapters/MPAppLovinEventAdapter.*','UniAds/Adapters/MPAppLovinInterstitialAdapter.*'
+    ss.requires_arc = true
   end
 
 #

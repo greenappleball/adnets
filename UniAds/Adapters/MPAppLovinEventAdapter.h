@@ -10,7 +10,7 @@
 
 #import "ALAdView.h"
 
-@interface MPAppLovinEventAdapter : MPBannerCustomEvent {
+@interface MPAppLovinEventAdapter : MPBannerCustomEvent <ALAdLoadDelegate> {
     ALAdView * _applovinBannerView;
 }
 
