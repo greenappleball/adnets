@@ -134,6 +134,7 @@ Pod::Spec.new do |s|
     ss.preserve_paths = '**/*.a'
     ss.library = 'AppLovinSdk'
     ss.frameworks = 'AdSupport','CoreTelephony','SystemConfiguration','StoreKit'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/AppLovin"' }
     ss.dependency 'UniAds/AppLovinAdapter'
   end
 
