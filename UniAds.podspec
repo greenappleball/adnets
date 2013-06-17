@@ -132,6 +132,7 @@ Pod::Spec.new do |s|
   s.subspec 'AppLovin' do |ss|
     ss.source_files = FileList['UniAds/AppLovin/headers/*.h']
     ss.preserve_paths = '**/*.a'
+    ss.library = 'AppLovinSdk'
     ss.frameworks = 'AdSupport','CoreTelephony','SystemConfiguration','StoreKit'
     ss.dependency 'UniAds/AppLovinAdapter'
   end
