@@ -21,14 +21,15 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Pro' do |ss|
+    ss.dependency 'UniAds/Base'
     ss.dependency 'UniAds/MdotM'
     ss.dependency 'UniAds/Smaato'
   end
 
   s.subspec 'All' do |ss|
-    ss.dependency 'UniAds/MdotM'
-    ss.dependency 'UniAds/Smaato'
+    ss.dependency 'UniAds/Pro'
     ss.dependency 'UniAds/SmartMad'
+    ss.dependency 'UniAds/AppLovin'
   end
   
 #
@@ -63,6 +64,10 @@ Pod::Spec.new do |s|
 
   s.subspec 'MdotMAdapter' do |ss|
     ss.source_files = 'UniAds/Adapters/MPMdotMEventAdapter.*'
+  end
+
+  s.subspec 'AppLovinAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/MPAppLovinEventAdapter.*','UniAds/Adapters/MPAppLovinInterstitialAdapter.*'
   end
 
 #
@@ -103,7 +108,6 @@ Pod::Spec.new do |s|
 #    ss.dependency 'UniAds/Reachability'
     ss.dependency 'UniAds/Cocoa_HTTP_Server'
     ss.dependency 'UniAds/SmartMadAdapter'
-    ss.dependency 'UniAds/Base'
   end
 
   s.subspec 'MdotM' do |ss|
@@ -125,6 +129,13 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
-#  s.dependency 'MoPubClient', '~> 1.12.1.0'
+  s.subspec 'AppLovin' do |ss|
+    ss.source_files = FileList['UniAds/AppLovin/headers/*.h']
+    ss.preserve_paths = '**/*.a'
+    ss.frameworks = 'AdSupport','CoreTelephony','SystemConfiguration','StoreKit'
+    ss.dependency 'UniAds/AppLovinAdapter'
+  end
+
+  s.dependency 'MoPubClient', '~> 1.12.1.0'
 
 end
