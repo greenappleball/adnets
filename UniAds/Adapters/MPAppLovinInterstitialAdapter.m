@@ -26,22 +26,10 @@
 {
     if (_loadedAd)
     {
-        UIWindow * window = rootViewController.view.window;
-        UIInterfaceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
-        
-        CGRect localFrame;
-        
-        if(currentOrientation == UIDeviceOrientationPortrait || currentOrientation == UIDeviceOrientationPortraitUpsideDown)
-        {
-            localFrame = CGRectMake(0, 0, window.frame.size.width, window.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height);
-        }
-        else
-        {
-            localFrame = CGRectMake(0, 0, window.frame.size.width - [UIApplication sharedApplication].statusBarFrame.size.width, window.frame.size.height);
-        }
-        
+        CGRect localFrame = rootViewController.view.frame;
         _interstitialAd = [[ALInterstitialAd alloc] initWithFrame:localFrame];
         _interstitialAd.adDisplayDelegate = self;
+        UIWindow * window = rootViewController.view.window;
         [_interstitialAd showOver:window andRender:_loadedAd];
     }
     else
