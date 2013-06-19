@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/Pro'
     ss.dependency 'UniAds/SmartMad'
     ss.dependency 'UniAds/AppLovin'
+    ss.dependency 'UniAds/FlurryAds'
   end
   
 #
@@ -55,19 +56,24 @@ Pod::Spec.new do |s|
 # Custom Adapters
 #
   s.subspec 'SmartMadAdapter' do |ss|
-    ss.source_files = 'UniAds/Adapters/MPSmartMadEventAdapter.*'
+    ss.source_files = 'UniAds/Adapters/SmartMad/*.*'
   end
 
   s.subspec 'SmaatoAdapter' do |ss|
-    ss.source_files = 'UniAds/Adapters/MPSmaatoEventAdapter.*'
+    ss.source_files = 'UniAds/Adapters/Smaato/*.*'
   end
 
   s.subspec 'MdotMAdapter' do |ss|
-    ss.source_files = 'UniAds/Adapters/MPMdotMEventAdapter.*'
+    ss.source_files = 'UniAds/Adapters/MdotM/*.*'
   end
 
   s.subspec 'AppLovinAdapter' do |ss|
-    ss.source_files = 'UniAds/Adapters/MPAppLovinEventAdapter.*','UniAds/Adapters/MPAppLovinInterstitialAdapter.*'
+    ss.source_files = 'UniAds/Adapters/AppLovin/*.*'
+    ss.requires_arc = true
+  end
+
+  s.subspec 'FlurryAdsAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/FlurryAds/*.*'
     ss.requires_arc = true
   end
 
@@ -137,6 +143,14 @@ Pod::Spec.new do |s|
     ss.frameworks = 'AdSupport','CoreTelephony','SystemConfiguration','StoreKit'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/AppLovin"' }
     ss.dependency 'UniAds/AppLovinAdapter'
+  end
+
+  s.subspec 'FlurryAds' do |ss|
+    ss.source_files = FileList['UniAds/FlurryAds/*.h']
+    ss.preserve_paths = '**/*.a'
+    ss.library = 'FlurryAds'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/FlurryAds"' }
+    ss.dependency 'UniAds/FlurryAdsAdapter'
   end
 
   s.dependency 'MoPubClient', '~> 1.12.2.0'
