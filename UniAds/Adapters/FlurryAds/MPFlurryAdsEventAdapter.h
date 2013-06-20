@@ -6,8 +6,9 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import "FlurryAdDelegate.h"
+#import "MPBannerCustomEvent.h"
 
-@interface MPFlurryAdsEventAdapter : MPBannerCustomEvent
+@interface MPFlurryAdsEventAdapter : MPBannerCustomEvent <FlurryAdDelegate>
 
 @end

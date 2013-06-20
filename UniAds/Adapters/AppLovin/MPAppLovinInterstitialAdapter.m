@@ -73,11 +73,13 @@
 -(void)ad:(ALAd *)ad wasDisplayedIn:(UIView *)view
 {
     MPLogInfo(@"AppLovin interstitial was displayed");
+    [self.delegate interstitialCustomEventDidAppear:self];
 }
 
 -(void)ad:(ALAd *)ad wasClickedIn:(UIView *)view
 {
     MPLogInfo(@"AppLovin interstitial was clicked");
+    [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
 }
 
 - (void)dealloc
