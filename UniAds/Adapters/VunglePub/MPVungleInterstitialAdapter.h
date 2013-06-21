@@ -8,6 +8,6 @@
 
 #import "MPInterstitialCustomEvent.h"
 
-@interface MPVungleInterstitialAdapter : MPInterstitialCustomEvent <FlurryAdDelegate>
+@interface MPVungleInterstitialAdapter : MPInterstitialCustomEvent
 
 @end

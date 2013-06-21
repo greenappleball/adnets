@@ -164,7 +164,8 @@ Pod::Spec.new do |s|
     ss.resources    = 'UniAds/VunglePub/resources/**/*.{png,bundle}'
     ss.preserve_paths = '**/*.a','UniAds/VunglePub'
     ss.library = 'vunglepub'
-    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub/bin"' }
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub/bin"',
+                      'HEADER_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub"' }
     ss.dependency 'UniAds/VunglePubAdapter'
   end
 
