@@ -77,6 +77,11 @@ Pod::Spec.new do |s|
     ss.requires_arc = true
   end
 
+  s.subspec 'VunglePubAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/VunglePubAdapter/*.*'
+    ss.requires_arc = true
+  end
+
 #
 # Ads Networks specifications
 #
@@ -151,6 +156,15 @@ Pod::Spec.new do |s|
     ss.library = 'FlurryAds'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/FlurryAds"' }
     ss.dependency 'UniAds/FlurryAdsAdapter'
+  end
+
+  s.subspec 'VunglePub' do |ss|
+    ss.source_files = FileList['UniAds/VunglePub/**/*.h']
+    ss.resources    = 'UniAds/VunglePub/resources/**/*.{png,bundle}'
+    ss.preserve_paths = '**/*.a'
+    ss.library = 'vunglepub'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub/bin"' }
+    ss.dependency 'UniAds/VunglePubAdapter'
   end
 
   s.dependency 'MoPubClient', '~> 1.12.2.0'
