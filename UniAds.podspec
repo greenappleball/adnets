@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'VunglePubAdapter' do |ss|
-    ss.source_files = 'UniAds/Adapters/VunglePubAdapter/*.*'
+    ss.source_files = 'UniAds/Adapters/VunglePub/*.*'
     ss.requires_arc = true
   end
 
