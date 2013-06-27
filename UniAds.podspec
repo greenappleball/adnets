@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '0.0.1'
+  s.version = '1.3.0'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
   s.author = {'PI' => 'support@pi.com'}
-  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git'}
+  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git', :tag => 'v1.3.0'}
   s.homepage = 'https://developers.google.com/mobile-ads-sdk/download#downloadios'
 #  s.source_files  = 'UniAds/**/*.{h,m,c,mm}'
   s.preserve_paths = 'UniAds/Adapters'
