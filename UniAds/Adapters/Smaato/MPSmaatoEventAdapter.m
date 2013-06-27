@@ -40,7 +40,6 @@
 - (void)dealloc {
     [self releaseBannerViewDelegateSafely];
     self.params = nil;
-	[super dealloc];
 }
 
 #pragma	mark - Private
@@ -107,7 +106,7 @@
 
     _adBannerView.adSettings.adspaceId = [self spaceId];
     _adBannerView.adSettings.publisherId = [self publisherId];
-    _adBannerView.animationType = kSOMAAnimationTypeNone;
+    _adBannerView.animationType = kSOMAAnimationTypeRandom;
     _adBannerView.adSettings.adType = kSOMAAdTypeAll;
     [_adBannerView setLocationUpdateEnabled:YES];
     [_adBannerView setAutoReloadEnabled:NO];

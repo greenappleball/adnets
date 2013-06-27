@@ -39,7 +39,6 @@
 
 - (void)dealloc {
     [self releaseBannerViewDelegateSafely];
-	[super dealloc];
 }
 
 #pragma	mark - Private
@@ -51,7 +50,6 @@
 
 - (void)releaseBannerViewDelegateSafely {
     [_adBannerView setAdViewDelegate:nil];
-    [_adBannerView release];
     _adBannerView = nil;
 }
 
@@ -89,7 +87,7 @@
     _adBannerView = [[MdotMAdView alloc] initWithFrame:(CGRect){CGPointZero, DEFAULT_FRAME}];
     [_adBannerView setAdViewDelegate:self];
 
-    MdotMRequestParameters* requestParameters = [[[MdotMRequestParameters alloc] init] autorelease];
+    MdotMRequestParameters* requestParameters = [[MdotMRequestParameters alloc] init];
     requestParameters.appKey = [self requestKey];
     NSString *isDebug = @"0";
 #ifdef DEBUG

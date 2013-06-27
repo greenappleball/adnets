@@ -46,13 +46,14 @@
     self.adBannerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mopubInfo = info;
     [FlurryAds setAdDelegate:self];
-    [FlurryAds fetchAndDisplayAdForSpace:self.adSpaceName view:self.adBannerView size:BANNER_TOP];
+    [FlurryAds fetchAdForSpace:self.adSpaceName frame:self.adBannerView.frame size:BANNER_TOP];
 }
 
 #pragma mark - FlurryAdDelegate methods
 
 - (void) spaceDidReceiveAd:(NSString*)adSpace{
     MPLogInfo(@"Successfully loaded banner FlurryAds: %@", adSpace);
+    [FlurryAds displayAdForSpace:adSpace onView:self.adBannerView];
     [self.delegate bannerCustomEvent:self didLoadAd:self.adBannerView];
 }
 
@@ -69,6 +70,7 @@
 - (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial
 {
     MPLogInfo(@"FlurryAds (%@) banner was dismissed", adSpace);
+    [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
     [FlurryAds setAdDelegate:nil];
 }
 

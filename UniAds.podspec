@@ -62,10 +62,12 @@ Pod::Spec.new do |s|
 
   s.subspec 'SmaatoAdapter' do |ss|
     ss.source_files = 'UniAds/Adapters/Smaato/*.*'
+    ss.requires_arc = true
   end
 
   s.subspec 'MdotMAdapter' do |ss|
     ss.source_files = 'UniAds/Adapters/MdotM/*.*'
+    ss.requires_arc = true
   end
 
   s.subspec 'AppLovinAdapter' do |ss|
@@ -169,6 +171,6 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/VunglePubAdapter'
   end
 
-  s.dependency 'MoPubClient', '~> 1.12.3.0'
+  s.dependency 'MoPubClient', '~> 1.12.2.0'
 
 end
