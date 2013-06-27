@@ -169,6 +169,6 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/VunglePubAdapter'
   end
 
-  s.dependency 'MoPubClient', '~> 1.12.2.0'
+  s.dependency 'MoPubClient', '~> 1.12.3.0'
 
 end
