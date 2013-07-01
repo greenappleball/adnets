@@ -85,6 +85,11 @@ Pod::Spec.new do |s|
     ss.requires_arc = true
   end
 
+  s.subspec 'AmazonAdAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/Amazon/*.*'
+    ss.requires_arc = true
+  end
+
 #
 # Ads Networks specifications
 #
@@ -169,6 +174,14 @@ Pod::Spec.new do |s|
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub/bin"',
                       'HEADER_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub"' }
     ss.dependency 'UniAds/VunglePubAdapter'
+  end
+
+  s.subspec 'AmazonAd' do |ss|
+    ss.source_files = 'UniAds/AmazonAd/AmazonAd.framework/Headers/*.h'
+    ss.preserve_paths = 'UniAds/AmazonAd/AmazonAd.framework'
+    ss.frameworks = 'AmazonAd','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit'
+    ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/AmazonAd"' }
+    ss.dependency 'UniAds/AmazonAdAdapter'
   end
 
   s.dependency 'MoPubClient', '~> 1.12.3.0'

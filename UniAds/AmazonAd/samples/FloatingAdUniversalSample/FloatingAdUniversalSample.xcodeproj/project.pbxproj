@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2421C9E91598F26900433128 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421C9E41598F26900433128 /* AppDelegate.m */; };
+		2421C9EA1598F26900433128 /* FloatingAdUniversalSample-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2421C9E51598F26900433128 /* FloatingAdUniversalSample-Info.plist */; };
+		2421C9EB1598F26900433128 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421C9E81598F26900433128 /* ViewController.m */; };
+		2421C9EE1598F2D100433128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421C9ED1598F2D100433128 /* main.m */; };
+		2421C9F31598F31F00433128 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2421C9EF1598F31F00433128 /* ViewController_iPad.xib */; };
+		2421C9F41598F31F00433128 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2421C9F11598F31F00433128 /* ViewController_iPhone.xib */; };
+		2421C9F71598F33200433128 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2421C9F51598F33200433128 /* InfoPlist.strings */; };
+		245D3CDF15815FB0005AEF9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D3CDE15815FB0005AEF9B /* UIKit.framework */; };
+		245D3CE115815FB0005AEF9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D3CE015815FB0005AEF9B /* Foundation.framework */; };
+		245D3CE315815FB0005AEF9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245D3CE215815FB0005AEF9B /* CoreGraphics.framework */; };
+		24DD469B163DCE9A00540574 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DD469A163DCE9A00540574 /* CoreLocation.framework */; };
+		8E42207115E6002E0009C90C /* AmazonAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E42207015E6002E0009C90C /* AmazonAd.framework */; };
+		EEC255131603DD8F00E29C35 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC255121603DD8F00E29C35 /* AdSupport.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2421C9E31598F26900433128 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FloatingAdUniversalSample/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		2421C9E41598F26900433128 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = FloatingAdUniversalSample/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		2421C9E51598F26900433128 /* FloatingAdUniversalSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FloatingAdUniversalSample-Info.plist"; path = "FloatingAdUniversalSample/FloatingAdUniversalSample-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2421C9E61598F26900433128 /* FloatingAdUniversalSample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FloatingAdUniversalSample-Prefix.pch"; path = "FloatingAdUniversalSample/FloatingAdUniversalSample-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		2421C9E71598F26900433128 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = FloatingAdUniversalSample/ViewController.h; sourceTree = SOURCE_ROOT; };
+		2421C9E81598F26900433128 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = FloatingAdUniversalSample/ViewController.m; sourceTree = SOURCE_ROOT; };
+		2421C9ED1598F2D100433128 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FloatingAdUniversalSample/main.m; sourceTree = SOURCE_ROOT; };
+		2421C9F01598F31F00433128 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = FloatingAdUniversalSample/en.lproj/ViewController_iPad.xib; sourceTree = SOURCE_ROOT; };
+		2421C9F21598F31F00433128 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = FloatingAdUniversalSample/en.lproj/ViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
+		2421C9F61598F33200433128 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = FloatingAdUniversalSample/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		245D3CDA15815FB0005AEF9B /* FloatingAdUniversalSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingAdUniversalSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		245D3CDE15815FB0005AEF9B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		245D3CE015815FB0005AEF9B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		245D3CE215815FB0005AEF9B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		24DD469A163DCE9A00540574 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8E42207015E6002E0009C90C /* AmazonAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonAd.framework; path = ../AmazonAd/AmazonAd.framework; sourceTree = "<group>"; };
+		EEC255121603DD8F00E29C35 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		245D3CD715815FB0005AEF9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24DD469B163DCE9A00540574 /* CoreLocation.framework in Frameworks */,
+				EEC255131603DD8F00E29C35 /* AdSupport.framework in Frameworks */,
+				8E42207115E6002E0009C90C /* AmazonAd.framework in Frameworks */,
+				245D3CDF15815FB0005AEF9B /* UIKit.framework in Frameworks */,
+				245D3CE115815FB0005AEF9B /* Foundation.framework in Frameworks */,
+				245D3CE315815FB0005AEF9B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		245D3CCF15815FB0005AEF9B = {
+			isa = PBXGroup;
+			children = (
+				245D3CE415815FB0005AEF9B /* FloatingAdUniversalSample */,
+				245D3CDD15815FB0005AEF9B /* Frameworks */,
+				245D3CDB15815FB0005AEF9B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		245D3CDB15815FB0005AEF9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				245D3CDA15815FB0005AEF9B /* FloatingAdUniversalSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		245D3CDD15815FB0005AEF9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24DD469A163DCE9A00540574 /* CoreLocation.framework */,
+				EEC255121603DD8F00E29C35 /* AdSupport.framework */,
+				8E42207015E6002E0009C90C /* AmazonAd.framework */,
+				245D3CDE15815FB0005AEF9B /* UIKit.framework */,
+				245D3CE015815FB0005AEF9B /* Foundation.framework */,
+				245D3CE215815FB0005AEF9B /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		245D3CE415815FB0005AEF9B /* FloatingAdUniversalSample */ = {
+			isa = PBXGroup;
+			children = (
+				2421C9EF1598F31F00433128 /* ViewController_iPad.xib */,
+				2421C9F11598F31F00433128 /* ViewController_iPhone.xib */,
+				2421C9E31598F26900433128 /* AppDelegate.h */,
+				2421C9E41598F26900433128 /* AppDelegate.m */,
+				2421C9E71598F26900433128 /* ViewController.h */,
+				2421C9E81598F26900433128 /* ViewController.m */,
+				245D3CE515815FB0005AEF9B /* Supporting Files */,
+			);
+			name = FloatingAdUniversalSample;
+			path = AmazonMobileAdsIOSExampleUniversalApp;
+			sourceTree = "<group>";
+		};
+		245D3CE515815FB0005AEF9B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2421C9F51598F33200433128 /* InfoPlist.strings */,
+				2421C9E61598F26900433128 /* FloatingAdUniversalSample-Prefix.pch */,
+				2421C9ED1598F2D100433128 /* main.m */,
+				2421C9E51598F26900433128 /* FloatingAdUniversalSample-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		245D3CD915815FB0005AEF9B /* FloatingAdUniversalSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 245D3CFB15815FB0005AEF9B /* Build configuration list for PBXNativeTarget "FloatingAdUniversalSample" */;
+			buildPhases = (
+				245D3CD615815FB0005AEF9B /* Sources */,
+				245D3CD715815FB0005AEF9B /* Frameworks */,
+				245D3CD815815FB0005AEF9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FloatingAdUniversalSample;
+			productName = AmazonMobileAdsIOSExampleUniversalApp;
+			productReference = 245D3CDA15815FB0005AEF9B /* FloatingAdUniversalSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		245D3CD115815FB0005AEF9B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 245D3CD415815FB0005AEF9B /* Build configuration list for PBXProject "FloatingAdUniversalSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 245D3CCF15815FB0005AEF9B;
+			productRefGroup = 245D3CDB15815FB0005AEF9B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				245D3CD915815FB0005AEF9B /* FloatingAdUniversalSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		245D3CD815815FB0005AEF9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2421C9EA1598F26900433128 /* FloatingAdUniversalSample-Info.plist in Resources */,
+				2421C9F31598F31F00433128 /* ViewController_iPad.xib in Resources */,
+				2421C9F41598F31F00433128 /* ViewController_iPhone.xib in Resources */,
+				2421C9F71598F33200433128 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		245D3CD615815FB0005AEF9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2421C9E91598F26900433128 /* AppDelegate.m in Sources */,
+				2421C9EB1598F26900433128 /* ViewController.m in Sources */,
+				2421C9EE1598F2D100433128 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2421C9EF1598F31F00433128 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2421C9F01598F31F00433128 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		2421C9F11598F31F00433128 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2421C9F21598F31F00433128 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		2421C9F51598F33200433128 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2421C9F61598F33200433128 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		245D3CF915815FB0005AEF9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		245D3CFA15815FB0005AEF9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		245D3CFC15815FB0005AEF9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../AmazonAd\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FloatingAdUniversalSample/FloatingAdUniversalSample-Prefix.pch";
+				INFOPLIST_FILE = "FLoatingAdUniversalSample/FloatingAdUniversalSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = FloatingAdUniversalSample;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		245D3CFD15815FB0005AEF9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../AmazonAd\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FloatingAdUniversalSample/FloatingAdUniversalSample-Prefix.pch";
+				INFOPLIST_FILE = "FLoatingAdUniversalSample/FloatingAdUniversalSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = FloatingAdUniversalSample;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		245D3CD415815FB0005AEF9B /* Build configuration list for PBXProject "FloatingAdUniversalSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				245D3CF915815FB0005AEF9B /* Debug */,
+				245D3CFA15815FB0005AEF9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		245D3CFB15815FB0005AEF9B /* Build configuration list for PBXNativeTarget "FloatingAdUniversalSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				245D3CFC15815FB0005AEF9B /* Debug */,
+				245D3CFD15815FB0005AEF9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 245D3CD115815FB0005AEF9B /* Project object */;
+}
