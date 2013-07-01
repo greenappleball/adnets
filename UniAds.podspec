@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/AppLovin'
     ss.dependency 'UniAds/FlurryAds'
     ss.dependency 'UniAds/VunglePub'
+    ss.dependency 'UniAds/AmazonAd'
   end
   
 #
