@@ -7,9 +7,7 @@
 //
 
 #import "MPSmaatoEventAdapter.h"
-#import <iSoma/SOMAAdListenerProtocol.h>
-#import <iSoma/SOMABannerViewDelegate.h>
-#import <iSoma/SOMABannerView.h>
+#import <iSoma/iSoma.h>
 #import "MPLogging.h"
 
 
@@ -24,7 +22,7 @@
 #define vPhoneIdiom @"phone"
 
 
-@interface MPSmaatoEventAdapter () <SOMAAdListenerProtocol,SOMABannerViewDelegate> {
+@interface MPSmaatoEventAdapter () <SOMABannerViewDelegate> {
     SOMABannerView* _adBannerView;
 }
 
@@ -50,7 +48,7 @@
 }
 
 - (void)releaseBannerViewDelegateSafely {
-    [_adBannerView removeAdListener:self];
+    [_adBannerView removeFromSuperview];
     [_adBannerView setDelegate:nil];
     _adBannerView = nil;
 }
@@ -102,32 +100,27 @@
 
 -(void) loadSmaatoSDK
 {
-    _adBannerView = [[SOMABannerView alloc] initWithDimension:[self dimention]];
+    _adBannerView = [[SOMABannerView alloc] initWithDimension:[self dimention] publisher:[self publisherId] adspace:[self spaceId]];
 
-    _adBannerView.adSettings.adspaceId = [self spaceId];
-    _adBannerView.adSettings.publisherId = [self publisherId];
+    // Test ids
+//    _adBannerView.adSettings.adspaceId = 0;
+//    _adBannerView.adSettings.publisherId = 0;
     _adBannerView.animationType = kSOMAAnimationTypeRandom;
     _adBannerView.adSettings.adType = kSOMAAdTypeAll;
     [_adBannerView setLocationUpdateEnabled:YES];
     [_adBannerView setAutoReloadEnabled:NO];
-    
-    [_adBannerView addAdListener:self];
+
     [_adBannerView setDelegate:self];
-    [_adBannerView asyncLoadNewBanner];
-}
-
-#pragma mark - Smaato SOMAAdListenerProtocol
-
--(void)onReceiveAd:(id<SOMAAdDownloaderProtocol>)sender withReceivedBanner:(id<SOMAReceivedBannerProtocol>)receivedBanner
-{
-    if ([receivedBanner status] == kSOMABannerStatusError) {
-        MPLogInfo(@"\nSmaato error ad banner retrieval: %@", [receivedBanner errorMessage]);
-        NSError* error = [self errorWithCode:[receivedBanner errorCode] userInfo:@{@"userInfo": [receivedBanner errorMessage]}];
-        [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:error];
-    } else {
-        MPLogInfo(@"\nSmaato has successfully loaded a new ad.");
-        [self.delegate bannerCustomEvent:self didLoadAd:_adBannerView];
-    }
+    __weak __typeof(&*self)pointer = self;
+    [_adBannerView asyncLoadNewBannerWithCompletionHandler:^(id<SOMAReceivedBanner> receivedBanner, NSError *error) {
+        if (error) {
+            MPLogInfo(@"\nSmaato error ad banner retrieval: %@", [error localizedDescription]);
+            [pointer.delegate bannerCustomEvent:pointer didFailToLoadAdWithError:error];
+        } else {
+            MPLogInfo(@"\nSmaato has successfully loaded a new ad.");
+            [pointer.delegate bannerCustomEvent:pointer didLoadAd:_adBannerView];
+        }
+    }];
 }
 
 #pragma mark - Smaato SOMABannerViewDelegate methods
