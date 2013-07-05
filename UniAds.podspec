@@ -100,7 +100,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'AdMob' do |ss|
-    ss.source_files = FileList['UniAds/AdMob/*.h']
+    ss.source_files = 'UniAds/AdMob/*.h'
     ss.preserve_paths = 'UniAds/AdMob/Add-ons/{Mediation, Search, DoubleClick}', '**/*.a'
     ss.library = 'GoogleAdMobAds'
     ss.frameworks = 'AudioToolbox', 'MessageUI', 'SystemConfiguration', 'CoreGraphics', 'AdSupport', 'StoreKit'
@@ -109,7 +109,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MMSDK' do |ss|
-    ss.source_files = FileList['UniAds/MMSDK/*.h']
+    ss.source_files = 'UniAds/MMSDK/*.h'
     ss.preserve_paths = '**/*.a'
     ss.library = 'MMSDK'
     ss.frameworks = 'QuartzCore','MediaPlayer','CoreGraphics','CoreLocation','MobileCoreServices','AudioToolbox','AVFoundation','SystemConfiguration','UIKit','Foundation'
@@ -118,7 +118,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'SmartMad' do |ss|
-    ss.source_files = FileList['UniAds/SmartMad/*.h']
+    ss.source_files = 'UniAds/SmartMad/*.h'
     ss.resources    = 'UniAds/SmartMad/*.{png,bundle}'
     ss.preserve_paths = '**/*.a'
     ss.library = 'SmartMad'
@@ -132,7 +132,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MdotM' do |ss|
-    ss.source_files = FileList['UniAds/MdotM/*.h']
+    ss.source_files = 'UniAds/MdotM/*.h'
     ss.preserve_paths = '**/*.a'
     ss.library = 'MdotMSDK2','z','xml2'
     ss.frameworks = 'SystemConfiguration','MobileCoreServices','CFNetwork','UIKit','Foundation','CoreGraphics','MediaPlayer','QuartzCore','AdSupport'
@@ -151,7 +151,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'AppLovin' do |ss|
-    ss.source_files = FileList['UniAds/AppLovin/headers/*.h']
+    ss.source_files = 'UniAds/AppLovin/headers/*.h'
     ss.preserve_paths = '**/*.a'
     ss.library = 'AppLovinSdk'
     ss.frameworks = 'AdSupport','CoreTelephony','SystemConfiguration','StoreKit'
@@ -160,7 +160,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'FlurryAds' do |ss|
-    ss.source_files = FileList['UniAds/FlurryAds/*.h']
+    ss.source_files = 'UniAds/FlurryAds/*.h'
     ss.preserve_paths = '**/*.a'
     ss.library = 'FlurryAds'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/FlurryAds"' }
@@ -168,7 +168,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'VunglePub' do |ss|
-    ss.source_files = FileList['UniAds/VunglePub/**/*.h']
+    ss.source_files = 'UniAds/VunglePub/**/*.h'
     ss.resources    = 'UniAds/VunglePub/resources/**/*.{png,bundle}'
     ss.preserve_paths = '**/*.a','UniAds/VunglePub'
     ss.library = 'vunglepub'

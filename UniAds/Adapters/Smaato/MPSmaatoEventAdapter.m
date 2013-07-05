@@ -103,10 +103,10 @@
     _adBannerView = [[SOMABannerView alloc] initWithDimension:[self dimention] publisher:[self publisherId] adspace:[self spaceId]];
 
     // Test ids
-//    _adBannerView.adSettings.adspaceId = 0;
-//    _adBannerView.adSettings.publisherId = 0;
+    _adBannerView.adSettings.adspaceId = 0;
+    _adBannerView.adSettings.publisherId = 0;
     _adBannerView.animationType = kSOMAAnimationTypeRandom;
-    _adBannerView.adSettings.adType = kSOMAAdTypeAll;
+    _adBannerView.adSettings.adType = kSOMAAdTypeImage;
     [_adBannerView setLocationUpdateEnabled:YES];
     [_adBannerView setAutoReloadEnabled:NO];
 
