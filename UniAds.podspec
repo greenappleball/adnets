@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '2.6.4'
+  s.version = '2.6.5'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
@@ -33,25 +33,6 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/FlurryAds'
     ss.dependency 'UniAds/VunglePub'
     ss.dependency 'UniAds/AmazonAd'
-  end
-  
-#
-# Third_Party_Source_Code
-#
-  s.subspec 'ZipArchive' do |ss|
-    ss.source_files = 'UniAds/SmartMad/Third_Party_Source_Code/ZipArchive/**/*.{h,m,c,mm}'
-  end
-
-  s.subspec 'Reachability' do |ss|
-    ss.source_files = 'UniAds/SmartMad/Third_Party_Source_Code/Reachability/**/*.{h,m,c,mm}'
-  end
-
-  s.subspec 'Cocoa_HTTP_Server' do |ss|
-    ss.source_files = 'UniAds/SmartMad/Third_Party_Source_Code/Cocoa HTTP Server/**/*.{h,m,c,mm}'
-  end
-
-  s.subspec 'Erica_Sadun' do |ss|
-    ss.source_files = 'UniAds/SmartMad/Third_Party_Source_Code/Erica Sadun/**/*.{h,m,c,mm}'
   end
 
 #
@@ -121,15 +102,10 @@ Pod::Spec.new do |s|
     ss.source_files = 'UniAds/SmartMad/*.h'
     ss.resources    = 'UniAds/SmartMad/*.{png,bundle}'
     ss.preserve_paths = '**/*.a'
-    ss.library = 'SmartMad'
-    ss.frameworks = 'AudioToolbox','AVFoundation','CoreLocation','CoreMotion','CoreTelephony','QuartzCore','MediaPlayer','StoreKit','SystemConfiguration','CFNetwork','MessageUI','EventKit'
+    ss.library = 'SmartMad','z'
+    ss.frameworks = 'AudioToolbox','AdSupport','CoreLocation','CoreMotion','CoreTelephony','AVFoundation','QuartzCore','MediaPlayer','StoreKit','SystemConfiguration','CFNetwork','MessageUI','EventKit','EventKitUI'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/SmartMad"' }
-    ss.dependency 'UniAds/ZipArchive'
-    ss.dependency 'UniAds/Erica_Sadun'
-#    ss.dependency 'UniAds/Reachability'
-    ss.dependency 'UniAds/Cocoa_HTTP_Server'
     ss.dependency 'UniAds/SmartMadAdapter'
-    ss.dependency 'JSONKit'
   end
 
   s.subspec 'MdotM' do |ss|
