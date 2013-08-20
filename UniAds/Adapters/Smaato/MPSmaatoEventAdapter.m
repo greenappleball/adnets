@@ -107,7 +107,7 @@
 //    _adBannerView.adSettings.publisherId = 0;
     _adBannerView.animationType = kSOMAAnimationTypeRandom;
     _adBannerView.adSettings.adType = kSOMAAdTypeImage;
-    [_adBannerView setLocationUpdateEnabled:YES];
+    [_adBannerView setLocationUpdateEnabled:NO];
     [_adBannerView setAutoReloadEnabled:NO];
 
     [_adBannerView setDelegate:self];
