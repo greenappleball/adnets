@@ -12,6 +12,9 @@
 
 #define kAdSpaceName   @"adSpaceName"
 
+#define SIZE_BANNER         (CGSize){320, 50}
+#define SIZE_LEADERBOARD    (CGSize){728, 90}
+#define SIZE_VIEW           UIUserInterfaceIdiomPad == [UIDevice currentDevice].userInterfaceIdiom ? SIZE_LEADERBOARD : SIZE_BANNER
 
 @interface MPFlurryAdsEventAdapter ()
 
@@ -42,6 +45,9 @@
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
     MPLogInfo(@"Requesting FlurryAds banner...");
+    if (CGSizeEqualToSize(size, CGSizeZero)) {
+        size = SIZE_VIEW;
+    }
     self.adBannerView = [[UIView alloc] initWithFrame:(CGRect){CGPointZero, size}];
     self.adBannerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mopubInfo = info;

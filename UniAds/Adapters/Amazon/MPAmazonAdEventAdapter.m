@@ -18,6 +18,7 @@
 
 #define AD_DOMAIN               @"com.AmazonAd_iOS_SDK"
 #define kAppId   @"appId"
+#define kIsTestMode @"isTestMode"
 
 @interface MPAmazonAdEventAdapter () <AmazonAdViewDelegate> {
     AmazonAdView* _adBannerView;
@@ -57,9 +58,9 @@
 - (void)loadAmazonAd
 {
     AmazonAdOptions *options = [AmazonAdOptions options];
-#ifdef DEBUG
-    options.isTestRequest = YES;
-#endif
+    if (self.mopubInfo[kIsTestMode]) {
+        options.isTestRequest = YES;
+    }
     _adBannerView.delegate = self;
     [_adBannerView loadAd:options];
 }

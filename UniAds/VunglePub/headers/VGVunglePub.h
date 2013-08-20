@@ -50,7 +50,6 @@
 -(void)vungleMoviePlayed:(VGPlayData*)playData;
 -(void)vungleStatusUpdate:(VGStatusData*)statusData;
 -(void)vungleViewDidDisappear:(UIViewController*)viewController;
--(void)vungleViewDidDisappear:(UIViewController*)viewController;
 -(void)vungleViewWillAppear:(UIViewController*)viewController;
 -(void)vungleAppStoreViewDidDisappear;
 @end

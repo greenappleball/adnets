@@ -28,7 +28,12 @@
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
-    [VGVunglePub playModalAd:rootViewController animated:TRUE];
+    if ([VGVunglePub adIsAvailable]) {
+        [VGVunglePub playModalAd:rootViewController animated:TRUE];
+    } else {
+        [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+        [self.delegate interstitialCustomEventDidExpire:self];
+    }
 }
 
 #pragma mark - VGVunglePubDelegate methods
@@ -48,6 +53,7 @@
 -(void)vungleViewWillAppear:(UIViewController*)viewController
 {
     [self.delegate interstitialCustomEventWillAppear:self];
+    [self.delegate interstitialCustomEventDidAppear:self];
 }
 
 -(void)vungleAppStoreViewDidDisappear

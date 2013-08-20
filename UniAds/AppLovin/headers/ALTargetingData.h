@@ -49,80 +49,37 @@
 @property(strong, nonatomic) NSString * country;
 
 /**
- * Phone number of the current user. Phone number should be in E.164 format. For
- * example: +15551234567.
- *
- * <p>
- *     <b>Please note:</b> Raw phone number will not be transferred over the
- *     network. AppLovin SDK will hash the value before using it.
- * </p>
- *
- * @param phoneNumber Raw phone number of current user.
+ * API Depricated
  */
 @property(strong, nonatomic) NSString * phoneNumber;
 
 /**
- * Email of the current user.
- *
- * <p>
- *     <b>Please note:</b> Raw value will not be transferred over the network.
- *     AppLovin SDK will hash the value before using it.
- * </p>
+ * API Depricated
  */
 @property(strong, nonatomic) NSString * email;
 
 /**
- * All known emails of the current user.
- *
- * <p>
- *     <b>Please note:</b> Raw values will not be transferred over the network.
- *     AppLovin SDK will hash all the values before using it.
- * </p>
+ * API Depricated
  */
 @property(strong, nonatomic) NSArray * emails;
 
 /**
- * Hashed phone number of the current user.
- *
- * <p>
- * <b>Please note:</b>  Phone number should be normalized to E.164, hashed
- * with SHA-1 function and converted to HEX string. For example,
- * '555-123-3512' would be normalized to '+15551233512' and would result in
- * '0ffdf5e4d6bf07163edd87e94ead4ed7ee38ba21'.
- * </p>
- *
- * @param email Hashed email of the current user.
+ * API Depricated
  */
 @property(strong, nonatomic) NSString * hashedPhoneNumber;
 
 /**
- * Hashed email of the current user.
- *
- * <p>
- * <b>Please note:</b> Emails should be lowercased, hashed with SHA-1 function and
- * converted to HEX string. For example, 'TestEmail@test3.nz' would result in
- * '07e775b970a44530a12ef3729a6f49da9e5f0229'
- * </p>
- *
- * @param email Hashed email of the current user.
+ * API Depricated
  */
 @property(strong, nonatomic) NSString * hashedEmail;
 
 /**
- * Set all known hashed emails of the current user.
- *
- * <p>
- * <b>Please note:</b> Emails should be lowercased, hashed with SHA-1 function and
- * converted to HEX string. For example, 'TestEmail@test3.nz' would result in
- * '07e775b970a44530a12ef3729a6f49da9e5f0229'
- * </p>
- *
- * @param emails Raw emails of current user.
+ * API Depricated
  */
 @property(strong, nonatomic) NSArray * hashedEmails;
 
 /**
- * First name of current user.
+ * API Depricated
  */
 @property(strong, nonatomic) NSString * firstName;
 

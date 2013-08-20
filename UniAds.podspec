@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '1.3.0'
+  s.version = '2.6.4'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
@@ -129,6 +129,7 @@ Pod::Spec.new do |s|
 #    ss.dependency 'UniAds/Reachability'
     ss.dependency 'UniAds/Cocoa_HTTP_Server'
     ss.dependency 'UniAds/SmartMadAdapter'
+    ss.dependency 'JSONKit'
   end
 
   s.subspec 'MdotM' do |ss|
@@ -145,7 +146,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'UniAds/Smaato/iSoma.framework/Headers/*.h'
     ss.resources    = 'UniAds/Smaato/iSoma.framework/Resources/**/*.{strings}'
     ss.preserve_paths = 'UniAds/Smaato/iSoma.framework'
-    ss.frameworks = 'iSoma','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit'
+    ss.frameworks = 'iSoma','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit','EventKit','EventKitUI'
     ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/Smaato"' }
     ss.dependency 'UniAds/SmaatoAdapter'
   end
@@ -171,7 +172,8 @@ Pod::Spec.new do |s|
     ss.source_files = 'UniAds/VunglePub/**/*.h'
     ss.resources    = 'UniAds/VunglePub/resources/**/*.{png,bundle}'
     ss.preserve_paths = '**/*.a','UniAds/VunglePub'
-    ss.library = 'vunglepub'
+    ss.library = 'vunglepub','z'
+    ss.frameworks = 'AVFoundation','CFNetwork','CoreGraphics','AudioToolbox','CoreMedia','Foundation','MediaPlayer','QuartzCore','SystemConfiguration','UIKit','AdSupport','StoreKit','CoreLocation'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub/bin"',
                       'HEADER_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub"' }
     ss.dependency 'UniAds/VunglePubAdapter'
@@ -185,6 +187,6 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/AmazonAdAdapter'
   end
 
-  s.dependency 'MoPubClient', '~> 1.12.3.0'
+  s.dependency 'MoPubClient'
 
 end
