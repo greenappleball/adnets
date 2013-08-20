@@ -2,7 +2,7 @@
  @header SMAdManager.h
  @abstract base bannerView
  @author madhouse
- @version 3.0.0 2013/01/14 Creation
+ @version 3.0.4 2013/08/14 Creation
  */
 
 #import <Foundation/Foundation.h>
@@ -45,22 +45,22 @@
 
 
 typedef enum {
-    BannerAnimation_None = 0,
-    BannerAnimation_Random = 1,
-    BannerAnimation_FadeInOut = 2,
-    BannerAnimation_FlipFromLeft = 3,
-    BannerAnimation_FlipFromRight = 4,
-    BannerAnimation_PageUp = 5,
-    BannerAnimation_PageDown = 6,
-    BannerAnimation_SliderFromLeft = 7,
-    BannerAnimation_SliderFromRight = 8,
-} BannerAnimationType;
+    BANNER_ANIMATION_TYPE_NONE = 0,
+    BANNER_ANIMATION_TYPE_RANDOM = 1,
+    BANNER_ANIMATION_TYPE_FADEINOUT = 2,
+    BANNER_ANIMATION_TYPE_FLIPFROMLEFT = 3,
+    BANNER_ANIMATION_TYPE_FLIPFROMRIGHT = 4,
+    BANNER_ANIMATION_TYPE_CURLUP = 5,
+    BANNER_ANIMATION_TYPE_CURLDOWN = 6,
+    BANNER_ANIMATION_TYPE_SLIDEFROMLEFT = 7,
+    BANNER_ANIMATION_TYPE_SLIDEFROMRIGHT = 8,
+} SMAdBannerAnimationType;
 
 typedef enum {
-    InterstitialAnimation_None = 0,
-    InterstitialAnimation_FadeInOut = 1,
-    InterstitialAnimation_Popup = 2,
-}InterstitialAnimationType;
+    INTERSTITIAL_ANIMATION_TYPE_NONE = 0,
+    INTERSTITIAL_ANIMATION_TYPE_POPUP = 1,
+    INTERSTITIAL_ANIMATION_TYPE_FADEINOUT = 2,
+}SMAdInterstitialAnimationType;
 
 typedef enum {
     PHONE_AD_BANNER_MEASURE_AUTO = 0,
@@ -73,11 +73,11 @@ typedef enum {
     AD_INTERSTITIAL_MEASURE_AUTO = 0,
     AD_INTERSTITIAL_MEASURE_UMAP = 1,
 }SMAdInterstitialSizeType;
-               
+
 typedef enum {
-    AdSpaceTypeBanner = 1,
-    AdSpaceTypeIntersitial = 2,
-}AdSpaceType;
+    BANNER_AD_UNIT_TYPE= 1,
+    INTERSTITIAL_AD_UNIT_TYPE = 2,
+}SMAdUnitType;
 
 
 
@@ -155,7 +155,7 @@ typedef enum {
  @param adSpaceType
  @result nil
  */
-+ (void)enableAdPrecache:(NSString*)adSpaceId adSpaceType:(AdSpaceType)adSpaceType;
++ (void)enableAdPrecache:(NSString*)adSpaceId adUnitType:(SMAdUnitType)adUnitType;
 
 /*!
  @method

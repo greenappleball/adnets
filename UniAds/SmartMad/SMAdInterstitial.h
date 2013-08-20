@@ -2,7 +2,7 @@
  @header SMAdInterstitial.h
  @abstract base bannerView
  @author madhouse
- @version 3.0.0 2013/01/14 Creation
+ @version 3.0.4 2013/08/14 Creation
  */
 
 
@@ -24,7 +24,7 @@
 
 /*!
  @method
- @abstract 收到插页广告
+ @abstract 插页广告接收成功
  @discussion
  @param ad
  @result nil
@@ -33,7 +33,7 @@
 
 /*!
  @method
- @abstract 插页广告获取失败
+ @abstract 插页广告接收失败
  @discussion
  @param adview
  @param errorCode
@@ -43,7 +43,7 @@
 
 /*!
  @method
- @abstract 插页广告被点击
+ @abstract 插页广告已经被点击
  @discussion
  @result nil
  */
@@ -52,7 +52,7 @@
 
 /*!
  @method
- @abstract 插页广告将被展示
+ @abstract 插页广告将添加到屏幕上
  @discussion
  @param ad
  @result nil
@@ -61,7 +61,7 @@
 
 /*!
  @method
- @abstract 插页广告将被移出
+ @abstract 插页广告将要从屏幕上移出
  @discussion
  @param ad
  @result nil
@@ -70,7 +70,7 @@
 
 /*!
  @method
- @abstract 插页广告已经被移出
+ @abstract 插页广告已经从屏幕上移出
  @discussion
  @param ad
  @result nil
@@ -79,7 +79,7 @@
 
 /*!
  @method
- @abstract 应用程序切换到后台
+ @abstract 插页广告被点击后应用切换到后台，例如：调用系统浏览器
  @discussion
  @param ad
  @result nil
@@ -118,7 +118,7 @@
  @property
  @abstract 插页广告的动画
  */
-@property (nonatomic, assign) InterstitialAnimationType adInterstitialAnimationType;
+@property (nonatomic, assign) SMAdInterstitialAnimationType adInterstitialAnimationType;
 
 
 /*!
@@ -138,7 +138,7 @@
  @param adSize
  @result id
  */
-- (id)initWithAdSpaceId:(NSString *)adSpaceId smAdSize:(SMAdBannerSizeType)adSize;
+- (id)initWithAdSpaceId:(NSString *)adSpaceId smAdSize:(SMAdInterstitialSizeType)adSize;
 
 /*!
  @method

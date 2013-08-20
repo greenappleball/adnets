@@ -2,7 +2,7 @@
  @header SMAdBannerView.h
  @abstract base bannerView
  @author madhouse
- @version 3.0.0 2013/01/14 Creation 
+ @version 3.0.4 2013/08/14 Creation 
  */
 
 #import <UIKit/UIKit.h>
@@ -27,7 +27,7 @@
 
 /*!
  @method
- @abstract adBannerViewDidReceiveAd取到广告
+ @abstract 旗帜广告接收成功
  @discussion
  @param adView
  @result nil
@@ -36,7 +36,7 @@
 
 /*!
  @method
- @abstract adBannerView取广告失败
+ @abstract 旗帜广告接收失败
  @discussion
  @param adView
  @param errorCode
@@ -46,7 +46,7 @@
 
 /*!
  @method
- @abstract 即将展示banner广告
+ @abstract 旗帜广告将要添加到屏幕上
  @discussion
  @param adView
  @param eventCode
@@ -56,7 +56,7 @@
 
 /*!
  @method
- @abstract 即将移出banner广告
+ @abstract 旗帜广告将要从屏幕上移出
  @discussion
  @param adView
  @result nil
@@ -65,7 +65,7 @@
 
 /*!
  @method
- @abstract 已经移出banner广告
+ @abstract 旗帜广告已经从屏幕上移出
  @discussion
  @param adView
  @result nil
@@ -74,7 +74,7 @@
 
 /*!
  @method
- @abstract 应用程序被切换到后台
+ @abstract 旗帜广告被点击后应用切换到后台，例如：调用系统浏览器
  @discussion
  @param adView
  @result nil
@@ -83,7 +83,7 @@
 
 /*!
  @method
- @abstract 广告被点击
+ @abstract 旗帜广告广告已经被点击
  @discussion
  @result nil
  */
@@ -91,7 +91,7 @@
 
 /*!
  @method
- @abstract banner将被expand
+ @abstract 旗帜广告将要被扩展
  @discussion
  @param adView
  @result nil
@@ -100,7 +100,7 @@
 
 /*!
  @method
- @abstract expand已经被关闭
+ @abstract 旗帜广告已经关闭扩展
  @discussion
  @param adView
  @result nil
@@ -109,7 +109,7 @@
 
 /*!
  @method
- @abstract 应用程序即将被挂起
+ @abstract 应用将被旗帜广告遮挡，例如：调用内置浏览器或全屏广告
  @discussion
  @param adView
  @result nil
@@ -118,7 +118,7 @@
 
 /*!
  @method
- @abstract 应用程序即将被唤醒
+ @abstract 应用将从被广告遮挡状态恢复
  @discussion
  @param adView
  @result nil
@@ -164,7 +164,7 @@
  @property
  @abstract adBannerAnimationType
  */
-@property (nonatomic, assign) BannerAnimationType adBannerAnimationType;
+@property (nonatomic, assign) SMAdBannerAnimationType adBannerAnimationType;
 
 /*!
  @method
