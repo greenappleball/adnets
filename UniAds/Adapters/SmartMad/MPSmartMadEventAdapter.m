@@ -128,8 +128,8 @@
     return result;
 }
 
--(BannerAnimationType)adBannerAnimation {
-    BannerAnimationType animationType = BannerAnimation_None;
+-(SMAdBannerAnimationType)adBannerAnimation {
+    SMAdBannerAnimationType animationType = BANNER_ANIMATION_TYPE_NONE;
     return animationType;
 }
 
@@ -168,9 +168,11 @@
 }
 
 - (void)appWillSuspendForAd:(SMAdBannerView*)adView{
+    [self.delegate bannerCustomEventWillBeginAction:self];
 }
 
 - (void)appWillResumeFromAd:(SMAdBannerView*)adView{
+    [self.delegate bannerCustomEventDidFinishAction:self];
 }
 
 @end
