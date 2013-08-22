@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '2.6.5'
+  s.version = '2.7.0'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
@@ -69,6 +69,11 @@ Pod::Spec.new do |s|
 
   s.subspec 'AmazonAdAdapter' do |ss|
     ss.source_files = 'UniAds/Adapters/Amazon/*.*'
+    ss.requires_arc = true
+  end
+
+  s.subspec 'OneLouderAdAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/OneLouderAd/*.*'
     ss.requires_arc = true
   end
 
@@ -161,6 +166,17 @@ Pod::Spec.new do |s|
     ss.frameworks = 'AmazonAd','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit'
     ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/AmazonAd"' }
     ss.dependency 'UniAds/AmazonAdAdapter'
+  end
+
+  s.subspec 'OneLouderAd' do |ss|
+    ss.source_files = 'UniAds/OLAdKitSDK/*.{h,m}'
+    ss.resources    = 'UniAds/OLAdKitSDK/*.{png,bundle}'
+    ss.preserve_paths = '**/*.a'
+    ss.library = 'OLAdKitSDK'
+    ss.frameworks = 'StoreKit','AdSupport','AudioToolbox','AVFoundation','CoreLocation','CoreGraphics','EventKit','EventKitUI','MediaPlayer','MobileCoreService','QuartzCore','SystemConfiguration','Social','Accounts','CoreTelephony','MessageUI','iAd','AssetsLibrary'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/OLAdKitSDK"' }
+    ss.dependency 'UniAds/OneLouderAdAdapter'
+    ss.dependency 'JSONKit'
   end
 
   s.dependency 'MoPubClient'
