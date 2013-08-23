@@ -179,6 +179,6 @@ Pod::Spec.new do |s|
     ss.dependency 'JSONKit'
   end
 
-  s.dependency 'MoPubClient',:git=>'https://github.com/greenappleball/mopub-ios-sdk.git'
+  s.dependency 'MoPubClient'
 
 end
