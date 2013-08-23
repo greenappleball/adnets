@@ -10,6 +10,9 @@
 #import "OLInterstitialManager.h"
 #import "MPOneLouderAdInterstitialAdapter.h"
 
+#define kAppID                  @"appId"
+#define kAdPlacement            @"adPlacement"
+
 
 @interface MPOneLouderAdInterstitialAdapter () <OLInterstitialManagerDelegate>
 @property(weak, nonatomic) UIViewController* rootViewController;
@@ -17,35 +20,19 @@
 
 @implementation MPOneLouderAdInterstitialAdapter
 
-- (void)dealloc
-{
-    
-}
-
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
     MPLogInfo(@"Requesting interstitial...\n,%@", info);
-
-//    [OLAdManager startWithApplicationId:@"adlibsdkdemo"];
+    NSString* appId = info[kAppID]?:@"craigslist";
+    [OLAdManager startWithApplicationId:appId];
     [OLInterstitialManager sharedInstance].delegate = self;
     [self.delegate interstitialCustomEvent:self didLoadAd:nil];
-
-//    -(void) displayScreenAd;
-//    -(void) displayLaunchAd;
-//    -(void) displayPreRollAd;
-    
-//     [OLInterstitialManager displayScreenAd];
-//    +(void) displayLaunchAd;
-//    +(void) displayPreRollAd;
-//    
-//    -(void) displayAdWithPlacementName:(NSString*)name;
-
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
     self.rootViewController = rootViewController;
-    [[OLInterstitialManager sharedInstance] displayLaunchAd];
+    [OLInterstitialManager displayPreRollAd];
 }
 
 #pragma mark - OLAdManagerDelegate
@@ -53,16 +40,15 @@
 -(UIViewController*)adTopViewController {
     return self.rootViewController;
 }
+
 // Callbacks to let the app know that the full screen web view has been activated and closed.
 // These callbacks are useful if your app needs to pause any onscreen activity while the web view is being viewed (i.e. for a game).  You might also want to get a new ad when the full screen closes.
 - (void) olInterstitialManagerFullScreenWebViewActivated:(OLInterstitialManager *)olInterstitialManager
 {
-    [self.delegate interstitialCustomEventDidAppear:self];
 }
 
 - (void) olInterstitialManagerFullScreenWebViewClosed:(OLInterstitialManager *)olInterstitialManager
 {
-    [self.delegate interstitialCustomEventDidDisappear:self];
 }
 
 // Callbacks to let the app know that an ad has just expanded or collapsed.  This means that an ad is taking up part of the screen but interaction with various elements of the app may still be possible.
@@ -79,9 +65,12 @@
 // These are optional since fullScreenWebViewActivated and fullScreenWebViewClosed will be called as well in case only those are implemented.
 - (void) olInterstitialManagerInterstitialActivated:(OLInterstitialManager *)olInterstitialManager
 {
+    [self.delegate interstitialCustomEventDidAppear:self];
+
 }
 - (void) olInterstitialManagerInterstitialClosed:(OLInterstitialManager *)olInterstitialManager
 {
+    [self.delegate interstitialCustomEventDidDisappear:self];
 }
 
 // Callback to let app know that a special banner has been clicked.  This method is provided to help track if an ad click is respondible for sending the user out of the app.
@@ -91,6 +80,7 @@
 // NOTE: Some ad network SDKs don't provide a tracking option for ads that don't open a full screen view so our SDK can't provide this additional information in those cases.
 - (void) olInterstitialManagerAdViewWasClicked:(OLInterstitialManager *)olInterstitialManager
 {
+    [self.delegate interstitialCustomEventWillLeaveApplication:self];
 }
 
 // Callbacks that let you know the status of a call to getInterstitialAd.  These will be called once the ad has either been loaded successfully (succeeded) or is not available (failed).
@@ -100,6 +90,9 @@
 }
 - (void) olInterstitialManagerGetAdFailed:(OLInterstitialManager *)olInterstitialManager
 {
+    NSDictionary* userInfo = @{NSLocalizedDescriptionKey: @"OneLouder interstitial loading failed by unknown reason"};
+    NSError* error = [NSError errorWithDomain:@"com.onelouder" code:1000 userInfo:userInfo];
+    [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:error];
 }
 
 @end

@@ -11,6 +11,12 @@
 #import "MPOneLouderAdEventAdapter.h"
 #import "MPLogging.h"
 
+#define kAppID                  @"appId"
+#define kAdPlacement            @"adPlacement"
+#define kCloseButton            @"closeButton"
+#define     vHide                   @"hide"
+
+
 @interface MPOneLouderAdEventAdapter () <OLAdViewDelegate> {
     OLAdView* _adBannerView;
 }
@@ -38,25 +44,42 @@
 
 #pragma	mark -
 
+- (NSString*)appId
+{
+    return @"adlibsdkdemo";self.params[kAppID]?:@"craigslist";
+}
+
+- (NSString*)adPlacement
+{
+    return self.params[kAdPlacement]?:@"global";
+}
+
+- (BOOL)isCloseBtnHidden
+{
+    NSString* hideValue = self.params[kCloseButton];
+    BOOL isCloseBtnHidden = hideValue?[vHide isEqualToString:[hideValue lowercaseString]]:NO;
+    return isCloseBtnHidden;
+}
+
 #pragma	mark - super
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
     self.params = info;
-    [self loadAdsWithParams:self.params];
+    [self loadAds];
 }
 
 #pragma	mark - Loading
 
--(void) loadAdsWithParams:(NSDictionary*)params
+-(void) loadAds
 {
-    [OLAdManager startWithApplicationId:@"adlibsdkdemo"];
+    [OLAdManager startWithApplicationId:[self appId]];
 
     BOOL isIphone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
-    CGRect adRect = isIphone ? BANNER_RECT : BANNER_LONG_RECT;
     OLAdType adType = isIphone ? OLAdTypeBanner :OLAdTypeLongBanner;
+    CGRect adRect = isIphone ? BANNER_RECT : BANNER_LONG_RECT;
 
-    _adBannerView = [[OLAdView alloc] initWithFrame:adRect adPlacement:@"global" withAdType:adType];
+    _adBannerView = [[OLAdView alloc] initWithFrame:adRect adPlacement:[self adPlacement] withAdType:adType];
     _adBannerView.backgroundColor = [UIColor clearColor];
     _adBannerView.delegate = self;
 
@@ -91,11 +114,12 @@
 }
 
 - (void)olAdView:(OLAdView *)olAdView adLoaded:(BOOL)loaded {
-    if (loaded) {
-        MPLogInfo(@"OneLouderAd has successfully loaded a new ad.");
-    } else {
+    if (!loaded) {
         MPLogInfo(@"OneLouderAd failed in trying to load or refresh an ad.");
+    } else {
+        MPLogInfo(@"OneLouderAd has successfully loaded a new ad.");
     }
+    olAdView.btnClose.hidden = [self isCloseBtnHidden];
     [self olAdView:olAdView adHiddenChanged:!loaded];
 }
 
