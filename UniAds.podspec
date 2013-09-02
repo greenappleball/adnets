@@ -117,7 +117,6 @@ Pod::Spec.new do |s|
   s.subspec 'Smaato' do |ss|
     ss.source_files = 'UniAds/Smaato/iSoma/Headers/*.h'
     ss.resources    = 'UniAds/Smaato/iSoma/Resources/**/*.{strings}'
-    ss.preserve_paths = 'UniAds/Smaato'
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
