@@ -115,9 +115,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Smaato' do |ss|
-    ss.source_files = 'UniAds/Smaato/iSoma.framework/Headers/*.h'
-    ss.resources    = 'UniAds/Smaato/iSoma.framework/Resources/**/*.{strings}'
-    ss.frameworks = 'iSoma','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit','EventKit','EventKitUI'
+    ss.source_files = 'UniAds/Smaato/iSoma.framework/Versions/A/Headers/*.h'
+    ss.resources    = 'UniAds/Smaato/iSoma.framework/Versions/A/Resources/**/*.{strings}'
+#    ss.frameworks = 'iSoma','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit','EventKit','EventKitUI'
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
