@@ -115,8 +115,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Smaato' do |ss|
-    ss.source_files = 'UniAds/Smaato/Extracted/Headers/*.h'
-    ss.resources    = 'UniAds/Smaato/Extracted/Resources/**/*.{strings}'
+    ss.source_files = 'UniAds/Smaato/iSoma/Headers/*.h'
+    ss.resources    = 'UniAds/Smaato/iSoma/Resources/**/*.{strings}'
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
