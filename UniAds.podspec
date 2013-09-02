@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '3.0.0'
+  s.version = '3.0.1'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
