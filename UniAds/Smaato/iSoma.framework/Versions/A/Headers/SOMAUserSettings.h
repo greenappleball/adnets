@@ -157,7 +157,16 @@ typedef enum {
 	@abstract       Targeting parameter for userProfileEnabled.
     @availability	Available since iSoma 4.0 and later.
 */
-@property (nonatomic) BOOL userProfileEnabled;
+@property (nonatomic, readwrite) BOOL userProfileEnabled;
+
+/*!
+	@property		coppa
+	@methodgroup    User Settings
+
+	@abstract       Determines wheter `COPPA` should be used or not. Default is `NO`.
+    @availability	Available since iSoma 4.0 and later.
+*/
+@property (nonatomic, readwrite) BOOL COPPA;
 
 /*!
 	@method			requestString
