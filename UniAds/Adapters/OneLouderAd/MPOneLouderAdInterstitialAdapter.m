@@ -32,7 +32,7 @@
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
     self.rootViewController = rootViewController;
-    [OLInterstitialManager displayPreRollAd];
+    [OLInterstitialManager displayScreenAd];
 }
 
 #pragma mark - OLAdManagerDelegate

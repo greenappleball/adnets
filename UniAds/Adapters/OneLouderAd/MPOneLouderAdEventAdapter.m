@@ -46,7 +46,7 @@
 
 - (NSString*)appId
 {
-    return @"adlibsdkdemo";self.params[kAppID]?:@"craigslist";
+    return self.params[kAppID]?:@"craigslist";
 }
 
 - (NSString*)adPlacement
