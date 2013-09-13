@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://developers.google.com/mobile-ads-sdk/download#downloadios'
   s.preserve_paths = 'UniAds/Adapters'
 
-  s.preferred_dependency = 'Base'
+  s.default_subspec = 'Base'
 #
 # Preferred subspec: fix adding the pod to git repos
 #
@@ -113,8 +113,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Smaato' do |ss|
-    ss.source_files = 'UniAds/Smaato/iSoma/Headers/*.h'
-    ss.resources    = 'UniAds/Smaato/iSoma/Resources/**/*.{strings}'
+    ss.source_files = 'UniAds/Smaato/Headers/*.h'
+    ss.resources    = 'UniAds/Smaato/Resources/**/*.{strings}'
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
@@ -147,7 +147,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'AmazonAd' do |ss|
-    ss.source_files = 'UniAds/AmazonAd/*.h'
+    ss.source_files = 'UniAds/AmazonAd/AmazonAd/*.h'
     ss.dependency 'UniAds/AmazonAdAdapter'
   end
 
