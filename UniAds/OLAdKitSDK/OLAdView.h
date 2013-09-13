@@ -1,6 +1,5 @@
 //
 //  OLAdView.h
-//  Slices
 //
 //  Created by Alex Volovoy.
 //  Copyright (c) 2012 OneLouder Apps. All rights reserved.
