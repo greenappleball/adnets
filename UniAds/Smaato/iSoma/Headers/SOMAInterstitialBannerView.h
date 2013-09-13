@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iSoma/SOMAAdSettings.h>
-#import <iSoma/SOMAAdDownloaderDelegate.h>
+#import <SOMAAdSettings.h>
+#import <SOMAAdDownloaderDelegate.h>
 
 @class SOMAAdDownloader;
 

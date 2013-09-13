@@ -9,26 +9,26 @@
 #import <Foundation/Foundation.h>
 
 // Other
-#import <iSoma/SOMAConstants.h>
+#import <SOMAConstants.h>
 
 // Classes
-#import <iSoma/SOMAAdDimensionEnum.h>
-#import <iSoma/SOMAAdDownloader.h>
-#import <iSoma/SOMAAdSettings.h>
-#import <iSoma/SOMAAdTypeEnum.h>
-#import <iSoma/SOMABannerStatusEnum.h>
-#import <iSoma/SOMABannerView.h>
-#import <iSoma/SOMAErrorCodeEnum.h>
-#import <iSoma/SOMAFullScreenBanner.h>
-#import <iSoma/SOMAGlobalSettings.h>
-#import <iSoma/SOMASettingController.h>
-#import <iSoma/SOMAToastBannerView.h>
-#import <iSoma/SOMAUserSettings.h>
-#import <iSoma/SOMAInterstitialBannerView.h>
+#import <SOMAAdDimensionEnum.h>
+#import <SOMAAdDownloader.h>
+#import <SOMAAdSettings.h>
+#import <SOMAAdTypeEnum.h>
+#import <SOMABannerStatusEnum.h>
+#import <SOMABannerView.h>
+#import <SOMAErrorCodeEnum.h>
+#import <SOMAFullScreenBanner.h>
+#import <SOMAGlobalSettings.h>
+#import <SOMASettingController.h>
+#import <SOMAToastBannerView.h>
+#import <SOMAUserSettings.h>
+#import <SOMAInterstitialBannerView.h>
 
 // Protocols
-#import <iSoma/SOMAAdDownloading.h>
-#import <iSoma/SOMAAdDownloaderDelegate.h>
-#import <iSoma/SOMABannerViewDelegate.h>
-#import <iSoma/SOMAFullScreenBannerDelegate.h>
-#import <iSoma/SOMAReceivedBanner.h>
+#import <SOMAAdDownloading.h>
+#import <SOMAAdDownloaderDelegate.h>
+#import <SOMABannerViewDelegate.h>
+#import <SOMAFullScreenBannerDelegate.h>
+#import <SOMAReceivedBanner.h>
