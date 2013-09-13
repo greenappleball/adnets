@@ -1,12 +1,13 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '3.0.1'
+  s.version = '2.7.3'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
   s.author = {'PI' => 'support@pi.com'}
-  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git'}
+  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git', :tag => '2.7.3'}
   s.homepage = 'https://developers.google.com/mobile-ads-sdk/download#downloadios'
+#  s.source_files  = 'UniAds/**/*.{h,m,c,mm}'
   s.preserve_paths = 'UniAds/Adapters'
 
   s.preferred_dependency = 'Base'
@@ -15,12 +16,14 @@ Pod::Spec.new do |s|
 #
   s.subspec 'Base' do |ss|
     ss.dependency 'UniAds/iAd'
-    ss.dependency 'UniAds/OneLouderAd'
+    ss.dependency 'UniAds/AdMob'
+    ss.dependency 'UniAds/MMSDK'
   end
 
   s.subspec 'Pro' do |ss|
     ss.dependency 'UniAds/Base'
     ss.dependency 'UniAds/MdotM'
+    ss.dependency 'UniAds/Smaato'
   end
 
   s.subspec 'All' do |ss|
@@ -84,13 +87,19 @@ Pod::Spec.new do |s|
 
   s.subspec 'AdMob' do |ss|
     ss.source_files = 'UniAds/AdMob/*.h'
+    ss.preserve_paths = 'UniAds/AdMob/Add-ons/{Mediation, Search, DoubleClick}', '**/*.a'
+    ss.library = 'GoogleAdMobAds'
     ss.frameworks = 'AudioToolbox', 'MessageUI', 'SystemConfiguration', 'CoreGraphics', 'AdSupport', 'StoreKit'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/AdMob"' }
     ss.dependency 'MoPubClient/AdMobAdapter'
   end
 
   s.subspec 'MMSDK' do |ss|
     ss.source_files = 'UniAds/MMSDK/*.h'
+    ss.preserve_paths = '**/*.a'
+    ss.library = 'MMSDK'
     ss.frameworks = 'QuartzCore','MediaPlayer','CoreGraphics','CoreLocation','MobileCoreServices','AudioToolbox','AVFoundation','SystemConfiguration','UIKit','Foundation'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/MMSDK"' }
     ss.dependency 'MoPubClient/MillenialAdapter'
   end
 
@@ -115,8 +124,11 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Smaato' do |ss|
-    ss.source_files = 'UniAds/Smaato/iSoma/Headers/*.h'
-    ss.resources    = 'UniAds/Smaato/iSoma/Resources/**/*.{strings}'
+    ss.source_files = 'UniAds/Smaato/iSoma.framework/Headers/*.h'
+    ss.resources    = 'UniAds/Smaato/iSoma.framework/Resources/**/*.{strings}'
+    ss.preserve_paths = 'UniAds/Smaato/iSoma.framework'
+    ss.frameworks = 'iSoma','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit','EventKit','EventKitUI'
+    ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/Smaato"' }
     ss.dependency 'UniAds/SmaatoAdapter'
   end
 
@@ -164,11 +176,6 @@ Pod::Spec.new do |s|
     ss.frameworks = 'StoreKit','AdSupport','AudioToolbox','AVFoundation','CoreLocation','CoreGraphics','EventKit','EventKitUI','MediaPlayer','MobileCoreServices','QuartzCore','SystemConfiguration','Social','Accounts','CoreTelephony','MessageUI','iAd','AssetsLibrary'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/OLAdKitSDK"' }
     ss.dependency 'UniAds/OneLouderAdAdapter'
-
-    ss.dependency 'UniAds/AdMob'
-    ss.dependency 'UniAds/MMSDK'
-    ss.dependency 'UniAds/Smaato'
-
     ss.dependency 'JSONKit'
   end
 
