@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '3.0.1'
+  s.version = '3.0.3'
   s.platform = :ios
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
@@ -147,7 +147,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'AmazonAd' do |ss|
-    ss.source_files = 'UniAds/AmazonAd/AmazonAd/*.h'
+#    ss.source_files = 'UniAds/AmazonAd/AmazonAd/*.h'
+#    ss.dependency 'UniAds/AmazonAdAdapter'
+    ss.source_files = 'UniAds/AmazonAd/AmazonAd.framework/Headers/*.h'
+    ss.preserve_paths = 'UniAds/AmazonAd/AmazonAd.framework'
+    ss.frameworks = 'AmazonAd','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit'
+    ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/AmazonAd"' }
     ss.dependency 'UniAds/AmazonAdAdapter'
   end
 
@@ -155,7 +160,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'UniAds/OLAdKitSDK/*.{h,m}'
     ss.resources    = 'UniAds/OLAdKitSDK/*.{png,bundle}'
     ss.preserve_paths = '**/*.a'
-    ss.library = 'OLAdKitSDK'
+    ss.library = 'OLAdKitSDK_debug'
     ss.frameworks = 'StoreKit','AdSupport','AudioToolbox','AVFoundation','CoreLocation','CoreGraphics','EventKit','EventKitUI','MediaPlayer','MobileCoreServices','QuartzCore','SystemConfiguration','Social','Accounts','CoreTelephony','MessageUI','iAd','AssetsLibrary'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/OLAdKitSDK"' }
     ss.dependency 'UniAds/OneLouderAdAdapter'
