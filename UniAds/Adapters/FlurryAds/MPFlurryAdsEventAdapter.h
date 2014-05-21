@@ -6,7 +6,7 @@
 //
 //
 
-#import "FlurryAdDelegate.h"
+#import "FlurryAdsWrapper.h"
 #import "MPBannerCustomEvent.h"
 
 @interface MPFlurryAdsEventAdapter : MPBannerCustomEvent <FlurryAdDelegate>

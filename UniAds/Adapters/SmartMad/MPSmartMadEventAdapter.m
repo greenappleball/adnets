@@ -7,23 +7,14 @@
 //
 
 #import "MPSmartMadEventAdapter.h"
+#import "SmartMadAdapterData.h"
 #import "MPLogging.h"
-
-#pragma mark - Ad definitions
-
-#define AD_DOMAIN               @"com.smartmad.SmartMad_iOS_SDK"
-
-#define kAppID      @"id"
-#define kBanner1    @"banner1"
-#define kBanner2    @"banner2"
-#define kIdiom      @"idiom"
-#define vPhoneIdiom @"phone"
 
 @interface MPSmartMadEventAdapter () {
     SMAdBannerView* _adBannerView;
 }
 
-@property(retain, nonatomic) NSDictionary* params;
+@property(strong, nonatomic) SmartMadAdapterData* params;
 
 @end
 
@@ -34,7 +25,6 @@
 - (void)dealloc {
     [self releaseBannerViewDelegateSafely];
     self.params = nil;
-	[super dealloc];
 }
 
 #pragma	mark - Private
@@ -46,21 +36,19 @@
 
 - (void)releaseBannerViewDelegateSafely {
     [_adBannerView setDelegate:nil];
-    [_adBannerView release];
     _adBannerView = nil;
 }
 
 - (BOOL)is_iPhone
 {
-    NSString* idiom = self.params[kIdiom];
-    return (idiom && [idiom isEqualToString:vPhoneIdiom]);
+    return [self.params isPhone];
 }
 
 #pragma	mark - super
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
-    self.params = info;
+    self.params = [SmartMadAdapterData dataWithInfo:info];
     [self loadSmartMadSDK];
 }
 
@@ -100,15 +88,11 @@
 #pragma	mark - SmartMadDelegate
 
 -(NSString*)adAppId {
-    NSString* result = self.params[kAppID];
-    NSString* iPadFlipClockId = @"e5eee68390816c19";
-    return nil != result ? result : iPadFlipClockId;
+    return [self.params appId];
 }
 
 -(NSString*)adPositionId {
-    NSString* result = self.params[kBanner1];
-    NSString* iPadFlipClockBanner1 = @"90014245";
-    return nil != result ? result : iPadFlipClockBanner1;
+    return [self.params banner1];
 }
 
 -(NSTimeInterval)adInterval {
@@ -156,9 +140,11 @@
 }
 
 - (void)adBannerViewWillLeaveApplication:(SMAdBannerView*)adView{
+    [self.delegate bannerCustomEventWillLeaveApplication:self];
 }
 
 - (void)adDidClick{
+    [self.delegate bannerCustomEventDidFinishAction:self];
 }
 
 - (void)adWillExpandAd:(SMAdBannerView *)adView{
@@ -168,11 +154,9 @@
 }
 
 - (void)appWillSuspendForAd:(SMAdBannerView*)adView{
-    [self.delegate bannerCustomEventWillBeginAction:self];
 }
 
 - (void)appWillResumeFromAd:(SMAdBannerView*)adView{
-    [self.delegate bannerCustomEventDidFinishAction:self];
 }
 
 @end

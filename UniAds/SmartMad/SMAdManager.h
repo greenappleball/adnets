@@ -2,7 +2,7 @@
  @header SMAdManager.h
  @abstract base bannerView
  @author madhouse
- @version 3.0.4 2013/08/14 Creation
+ @version 3.0.5 2013/12/11 Creation
  */
 
 #import <Foundation/Foundation.h>

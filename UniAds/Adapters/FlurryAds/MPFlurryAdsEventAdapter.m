@@ -6,38 +6,28 @@
 //
 //
 
-#import "FlurryAds.h"
 #import "MPLogging.h"
+#import "FlurryAdapterData.h"
 #import "MPFlurryAdsEventAdapter.h"
 
-#define kAdSpaceName   @"adSpaceName"
-
-#define SIZE_BANNER         (CGSize){320, 50}
-#define SIZE_LEADERBOARD    (CGSize){728, 90}
-#define SIZE_VIEW           UIUserInterfaceIdiomPad == [UIDevice currentDevice].userInterfaceIdiom ? SIZE_LEADERBOARD : SIZE_BANNER
-
 @interface MPFlurryAdsEventAdapter ()
-
 @property (strong, nonatomic) UIView* adBannerView;
-@property (strong, nonatomic) NSDictionary* mopubInfo;
-@property (readonly, nonatomic) NSString* adSpaceName;
-
+@property (strong, nonatomic) FlurryAdapterData* mopubInfo;
 @end
-
 
 @implementation MPFlurryAdsEventAdapter
 
 - (void)dealloc
 {
-    [FlurryAds removeAdFromSpace:self.adSpaceName];
-    self.adBannerView = nil;
+    [[FlurryAdsWrapper sharedInstance] removeDelegate:self];
 }
 
-#pragma mark - Assignings
-
-- (NSString *)adSpaceName
+- (UIView *)adBannerView
 {
-    return self.mopubInfo[kAdSpaceName]?:@"Strongly need to define adSpaceName!!!";
+    if (!_adBannerView) {
+        _adBannerView = [FlurryAdsWrapper sharedAdView];
+    }
+    return _adBannerView;
 }
 
 #pragma mark - MPBannerCustomEvent Subclass Methods
@@ -48,36 +38,29 @@
     if (CGSizeEqualToSize(size, CGSizeZero)) {
         size = SIZE_VIEW;
     }
-    self.adBannerView = [[UIView alloc] initWithFrame:(CGRect){CGPointZero, size}];
+    self.adBannerView.frame = (CGRect){CGPointZero, size};
     self.adBannerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.mopubInfo = info;
-    [FlurryAds setAdDelegate:self];
-    [FlurryAds fetchAdForSpace:self.adSpaceName frame:self.adBannerView.frame size:BANNER_TOP];
+    self.mopubInfo = [FlurryAdapterData dataWithInfo:info];
+
+    [FlurryAdsWrapper fetchAndDisplayAdForSpace:[self.mopubInfo adSpaceName] size:BANNER_TOP inView:self.adBannerView withDelegate:self];
 }
 
 #pragma mark - FlurryAdDelegate methods
 
 - (void) spaceDidReceiveAd:(NSString*)adSpace{
     MPLogInfo(@"Successfully loaded banner FlurryAds: %@", adSpace);
-    [FlurryAds displayAdForSpace:adSpace onView:self.adBannerView];
     [self.delegate bannerCustomEvent:self didLoadAd:self.adBannerView];
 }
 
 - (void) spaceDidFailToReceiveAd:(NSString*)adSpace error:(NSError *)error {
     MPLogInfo(@"Failed to load banner FlurryAds: %@\n%@", adSpace, error.userInfo);
     [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
-    [FlurryAds setAdDelegate:nil];
-}
-
-- (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)interstitial {
-    return YES;
 }
 
 - (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial
 {
     MPLogInfo(@"FlurryAds (%@) banner was dismissed", adSpace);
     [self.delegate bannerCustomEvent:self didFailToLoadAdWithError:nil];
-    [FlurryAds setAdDelegate:nil];
 }
 
 - (void)spaceWillLeaveApplication:(NSString *)adSpace

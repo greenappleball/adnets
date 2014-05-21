@@ -6,48 +6,39 @@
 //
 //
 
-#import "FlurryAds.h"
 #import "MPLogging.h"
+#import "FlurryAdapterData.h"
 #import "MPFlurryAdsInterstitialAdapter.h"
 
-#define kAdSpaceName   @"adSpaceName"
-
-
 @interface MPFlurryAdsInterstitialAdapter ()
-
-@property (strong, nonatomic) NSDictionary* mopubInfo;
-@property (readonly, nonatomic) NSString* adSpaceName;
-
+@property (strong, nonatomic) FlurryAdapterData* mopubInfo;
 @end
-
 
 @implementation MPFlurryAdsInterstitialAdapter
 
-#pragma mark - Assignings
-
-- (NSString *)adSpaceName
-{
-    return self.mopubInfo[kAdSpaceName]?:@"Strongly need to define adSpaceName!!!";
-}
-
 #pragma mark - MPInterstitialCustomEvent Subclass Methods
+
+- (void)dealloc
+{
+    [[FlurryAdsWrapper sharedInstance] removeDelegate:self];
+}
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
     MPLogInfo(@"Requesting FlurryAds interstitial...\n,%@", info);
-    self.mopubInfo = info;
-    [FlurryAds setAdDelegate:self];
-    [FlurryAds fetchAdForSpace:self.adSpaceName frame:CGRectZero size:FULLSCREEN];
+    self.mopubInfo = [FlurryAdapterData dataWithInfo:info];
+    [FlurryAdsWrapper fetchAdForSpace:[self.mopubInfo adSpaceName] size:FULLSCREEN withDelegate:self];
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
-    if ([FlurryAds adReadyForSpace:self.adSpaceName]) {
-        [FlurryAds displayAdForSpace:self.adSpaceName onView:rootViewController.view];
+    NSString* adSpace = [self.mopubInfo adSpaceName];
+    if ([FlurryAdsWrapper adReadyForSpace:adSpace]) {
+        [FlurryAdsWrapper displayAdSpace:adSpace inView:rootViewController.view];
         [self.delegate interstitialCustomEventDidAppear:self];
     } else {
-        MPLogInfo(@"Requesting FlurryAds (%@) interstitial...", self.adSpaceName);
-        [FlurryAds fetchAdForSpace:self.adSpaceName frame:CGRectZero size:FULLSCREEN];
+        MPLogInfo(@"Requesting FlurryAds (%@) interstitial...", adSpace);
+        [FlurryAdsWrapper fetchAdForSpace:adSpace size:FULLSCREEN withDelegate:self];
     }
 }
 
@@ -61,19 +52,12 @@
 - (void) spaceDidFailToReceiveAd:(NSString*)adSpace error:(NSError *)error {
     MPLogInfo(@"Failed to load interstitial FlurryAds: %@\n%@", adSpace, error.userInfo);
     [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
-    [FlurryAds setAdDelegate:nil];
-}
-
-- (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)interstitial {
-    return YES;
 }
 
 - (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial
 {
     MPLogInfo(@"FlurryAds (%@) interstitial was dismissed", adSpace);
     [self.delegate interstitialCustomEventDidDisappear:self];
-    [FlurryAds removeAdFromSpace:self.adSpaceName];
-    [FlurryAds setAdDelegate:nil];
 }
 
 - (void)spaceWillLeaveApplication:(NSString *)adSpace

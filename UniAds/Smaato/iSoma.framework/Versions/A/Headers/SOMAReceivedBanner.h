@@ -143,7 +143,7 @@
 	@property		clickURL
 	@methodgroup    Other
 
-	@abstract        A `NSURL` representing the URL to the landing page.
+	@abstract       A `NSURL` representing the URL to the landing page.
     @availability	Available since iSoma 6.0 and later.
 */
 @property (copy, nonatomic, readonly) NSURL *clickURL;

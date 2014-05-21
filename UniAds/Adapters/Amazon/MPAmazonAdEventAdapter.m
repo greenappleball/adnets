@@ -11,33 +11,20 @@
 #import <AmazonAd/AmazonAdError.h>
 #import <AmazonAd/AmazonAdOptions.h>
 #import "MPAmazonAdEventAdapter.h"
+#import "AmazonAdapterData.h"
 #import "MPLogging.h"
-
-
-#pragma mark - Ad definitions
-
-#define AD_DOMAIN               @"com.AmazonAd_iOS_SDK"
-#define kAppId   @"appId"
-#define kIsTestMode @"isTestMode"
 
 @interface MPAmazonAdEventAdapter () <AmazonAdViewDelegate> {
     AmazonAdView* _adBannerView;
 }
 
-@property (readonly, nonatomic) NSString* appId;
-@property (strong, nonatomic) NSDictionary* mopubInfo;
+@property (strong, nonatomic) AmazonAdapterData* mopubInfo;
 @property (assign, nonatomic) UIInterfaceOrientation lastOrientation;
 
 @end
 
 
 @implementation MPAmazonAdEventAdapter
-
-- (NSString *)appId
-{
-    NSString* appId = self.mopubInfo[kAppId];
-    return appId ? : @"sample-app-v1_pub-2";
-}
 
 #pragma	mark - Private
 
@@ -58,9 +45,9 @@
 - (void)loadAmazonAd
 {
     AmazonAdOptions *options = [AmazonAdOptions options];
-    if (self.mopubInfo[kIsTestMode]) {
-        options.isTestRequest = YES;
-    }
+    options.isTestRequest = [self.mopubInfo isTesting];
+    options.usesGeoLocation = [self.mopubInfo isLocationUpdateEnabled];
+
     _adBannerView.delegate = self;
     [_adBannerView loadAd:options];
 }
@@ -69,10 +56,12 @@
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
-    self.mopubInfo = info;
+    self.mopubInfo = [AmazonAdapterData dataWithInfo:info];
+    // Test mode
+//    self.mopubInfo.isTestMode = @"yes";
 
     // Register the app ID
-    [[AmazonAdRegistration sharedRegistration] setApplicationId:self.appId];
+    [[AmazonAdRegistration sharedRegistration] setApplicationId:[self.mopubInfo appId]];
     [[AmazonAdRegistration sharedRegistration] setLogging:YES];
 
     CGSize amazonSize = [self sizeByIdiom:[[UIDevice currentDevice] userInterfaceIdiom] forOrientation:[[UIApplication sharedApplication] statusBarOrientation]];

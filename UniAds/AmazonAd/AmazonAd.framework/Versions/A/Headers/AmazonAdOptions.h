@@ -2,7 +2,7 @@
 //  AmazonAdOptions.h
 //  AmazonMobileAdsSDK
 //
-//  Copyright (c) 2012 Amazon.com. All rights reserved.
+//  Copyright (c) 2012-2013 Amazon.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

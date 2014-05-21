@@ -7,26 +7,14 @@
 //
 
 #import "MPSmaatoEventAdapter.h"
-#import <iSoma/iSoma.h>
+#import "SmaatoAdapterData.h"
+#import <iSoma.h>
 #import "MPLogging.h"
 
+@interface MPSmaatoEventAdapter () <SOMABannerViewDelegate>
 
-#pragma mark - Ad definitions
-
-#define AD_DOMAIN               @"com.Smaato_iOS_SDK"
-
-#define kSpaceId                @"spaceId"
-#define kPublisherId            @"publisherId"
-
-#define kIdiom      @"idiom"
-#define vPhoneIdiom @"phone"
-
-
-@interface MPSmaatoEventAdapter () <SOMABannerViewDelegate> {
-    SOMABannerView* _adBannerView;
-}
-
-@property(retain, nonatomic) NSDictionary* params;
+@property(strong, nonatomic) SOMABannerView* adBannerView;
+@property(strong, nonatomic) SmaatoAdapterData* params;
 
 @end
 
@@ -48,51 +36,26 @@
 }
 
 - (void)releaseBannerViewDelegateSafely {
-    [_adBannerView removeFromSuperview];
-    [_adBannerView setDelegate:nil];
-    _adBannerView = nil;
+    [self.adBannerView asyncLoadNewBannerWithCompletionHandler:nil];
+    [self.adBannerView setDelegate:nil];
+    [self.adBannerView removeFromSuperview];
+    self.adBannerView = nil;
 }
 
 #pragma	mark -
 
 - (SOMAAdDimension)dimention
 {
-    return (![self is_iPhone] ? kSOMAAdDimensionLeaderboard : kSOMAAdDimensionDefault);
-}
-
-- (NSInteger)spaceId
-{
-    NSInteger defaultSpaceId = ![self is_iPhone] ? 65773855 : 65773854;
-    NSInteger result = defaultSpaceId;
-    NSNumber* spaceId = self.params[kSpaceId];
-    if (nil != spaceId) {
-        result = [spaceId integerValue];
-    }
-    return result;
-}
-
-- (NSInteger)publisherId
-{
-    NSInteger defaultPublisherId = 923864091;
-    NSInteger result = defaultPublisherId;
-    NSNumber* publisherId = self.params[kPublisherId];
-    if (nil != publisherId) {
-        result = [publisherId integerValue];
-    }
-    return result;
-}
-
-- (BOOL)is_iPhone
-{
-    NSString* idiom = self.params[kIdiom];
-    return (idiom && [idiom isEqualToString:vPhoneIdiom]);
+    return (![self.params isPhone] ? kSOMAAdDimensionLeaderboard : kSOMAAdDimensionDefault);
 }
 
 #pragma	mark - super
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
-    self.params = info;
+    self.params = [SmaatoAdapterData dataWithInfo:info];
+    // Test mode
+//    self.params.isTestMode = @"yes";
     [self loadSmaatoSDK];
 }
 
@@ -100,25 +63,27 @@
 
 -(void) loadSmaatoSDK
 {
-    _adBannerView = [[SOMABannerView alloc] initWithDimension:[self dimention] publisher:[self publisherId] adspace:[self spaceId]];
+    self.adBannerView = [[SOMABannerView alloc] initWithDimension:[self dimention] publisher:[[self.params publisherId] integerValue] adspace:[[self.params spaceId] integerValue]];
 
-    // Test ids
-//    _adBannerView.adSettings.adspaceId = 0;
-//    _adBannerView.adSettings.publisherId = 0;
-    _adBannerView.animationType = kSOMAAnimationTypeRandom;
-    _adBannerView.adSettings.adType = kSOMAAdTypeImage;
-    [_adBannerView setLocationUpdateEnabled:NO];
-    [_adBannerView setAutoReloadEnabled:NO];
+    [self.adBannerView setLocationUpdateEnabled:[self.params isLocationUpdateEnabled]];
+    self.adBannerView.animationType = kSOMAAnimationTypeRandom;
+    self.adBannerView.adSettings.adType = kSOMAAdTypeAll;
+    [self.adBannerView setAutoReloadEnabled:NO];
 
-    [_adBannerView setDelegate:self];
-    __weak __typeof(&*self)pointer = self;
-    [_adBannerView asyncLoadNewBannerWithCompletionHandler:^(id<SOMAReceivedBanner> receivedBanner, NSError *error) {
+    [self.adBannerView setDelegate:self];
+    __weak __typeof(&*self)weakSelf = self;
+    [self.adBannerView asyncLoadNewBannerWithCompletionHandler:^(id<SOMAReceivedBanner> receivedBanner, NSError *error) {
         if (error) {
             MPLogInfo(@"\nSmaato error ad banner retrieval: %@", [error localizedDescription]);
-            [pointer.delegate bannerCustomEvent:pointer didFailToLoadAdWithError:error];
+            [weakSelf.delegate bannerCustomEvent:weakSelf didFailToLoadAdWithError:error];
+        // Pass video and richmedia ads - wrong displayed
+        } else if (kSOMAAdTypeVideo == [receivedBanner adType] ||
+                   kSOMAAdTypeRichMedia == [receivedBanner adType]) {
+            MPLogInfo(@"\nSmaato interstitial ad retrieval VideoAd or RichMedia - pass banner");
+            [weakSelf.delegate bannerCustomEvent:weakSelf didFailToLoadAdWithError:nil];
         } else {
             MPLogInfo(@"\nSmaato has successfully loaded a new ad.");
-            [pointer.delegate bannerCustomEvent:pointer didLoadAd:_adBannerView];
+            [weakSelf.delegate bannerCustomEvent:weakSelf didLoadAd:weakSelf.adBannerView];
         }
     }];
 }
@@ -127,10 +92,12 @@
 
 - (void)landingPageWillBeDisplayed
 {
+    [self.delegate bannerCustomEventWillBeginAction:self];
 }
 
 - (void)landingPageHasBeenClosed
 {
+    [self.delegate bannerCustomEventDidFinishAction:self];
 }
 
 @end

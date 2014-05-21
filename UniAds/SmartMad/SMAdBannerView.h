@@ -2,7 +2,7 @@
  @header SMAdBannerView.h
  @abstract base bannerView
  @author madhouse
- @version 3.0.4 2013/08/14 Creation 
+ @version 3.0.5 2013/12/11 Creation 
  */
 
 #import <UIKit/UIKit.h>
@@ -27,7 +27,7 @@
 
 /*!
  @method
- @abstract 旗帜广告接收成功
+ @abstract Banner received
  @discussion
  @param adView
  @result nil
@@ -36,7 +36,7 @@
 
 /*!
  @method
- @abstract 旗帜广告接收失败
+ @abstract Banner request failed
  @discussion
  @param adView
  @param errorCode
@@ -46,7 +46,7 @@
 
 /*!
  @method
- @abstract 旗帜广告将要添加到屏幕上
+ @abstract Banner will present screen
  @discussion
  @param adView
  @param eventCode
@@ -56,7 +56,7 @@
 
 /*!
  @method
- @abstract 旗帜广告将要从屏幕上移出
+ @abstract Banner will dismiss screen
  @discussion
  @param adView
  @result nil
@@ -65,7 +65,7 @@
 
 /*!
  @method
- @abstract 旗帜广告已经从屏幕上移出
+ @abstract Banner did dismiss screen
  @discussion
  @param adView
  @result nil
@@ -74,7 +74,7 @@
 
 /*!
  @method
- @abstract 旗帜广告被点击后应用切换到后台，例如：调用系统浏览器
+ @abstract Banner will leave application, eg. call default browser
  @discussion
  @param adView
  @result nil
@@ -83,7 +83,7 @@
 
 /*!
  @method
- @abstract 旗帜广告广告已经被点击
+ @abstract Banner Clicked
  @discussion
  @result nil
  */
@@ -91,7 +91,7 @@
 
 /*!
  @method
- @abstract 旗帜广告将要被扩展
+ @abstract Banner exended
  @discussion
  @param adView
  @result nil
@@ -100,7 +100,7 @@
 
 /*!
  @method
- @abstract 旗帜广告已经关闭扩展
+ @abstract Banner close expand status
  @discussion
  @param adView
  @result nil
@@ -109,7 +109,7 @@
 
 /*!
  @method
- @abstract 应用将被旗帜广告遮挡，例如：调用内置浏览器或全屏广告
+ @abstract Application will suspend for ad, eg. call in-app browser
  @discussion
  @param adView
  @result nil
@@ -118,7 +118,7 @@
 
 /*!
  @method
- @abstract 应用将从被广告遮挡状态恢复
+ @abstract Application will resume from ad
  @discussion
  @param adView
  @result nil
@@ -168,7 +168,7 @@
 
 /*!
  @method
- @abstract SMAdBannerView初始化方法
+ @abstract SMAdBannerView Public Constructors
  @discussion 
  @param adSpaceId 
 
@@ -180,7 +180,7 @@
 
 /*!
  @method
- @abstract SMAdBannerView初始化方法
+ @abstract SMAdBannerView Public Constructors
  @discussion 
  @param adSpaceId
  @param adSize

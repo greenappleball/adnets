@@ -6,7 +6,7 @@
 //
 //
 
-#import "vunglepub.h"
+#import "VunglePubAdapterData.h"
 #import "MPInterstitialCustomEvent.h"
 
 @interface MPVungleInterstitialAdapter : MPInterstitialCustomEvent <VGVunglePubDelegate>

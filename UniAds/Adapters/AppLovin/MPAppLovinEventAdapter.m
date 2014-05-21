@@ -7,9 +7,11 @@
 //
 
 #import "MPAppLovinEventAdapter.h"
-#import "MPConstants.h"
 #import "MPLogging.h"
 
+@interface MPAppLovinEventAdapter ()
+@property (strong, nonatomic) ALAdView* applovinBannerView;
+@end
 
 @implementation MPAppLovinEventAdapter
 
@@ -20,10 +22,10 @@
     MPLogInfo(@"Requesting AppLovin banner...");
     
     if (CGSizeEqualToSize(size, MOPUB_BANNER_SIZE)) {
-        _applovinBannerView = [[ALAdView alloc] initBannerAd];
-        _applovinBannerView.adLoadDelegate = self;
+        self.applovinBannerView = [[ALAdView alloc] initBannerAd];
+        self.applovinBannerView.adLoadDelegate = self;
         
-        [_applovinBannerView loadNextAd];
+        [self.applovinBannerView loadNextAd];
     }
     else
     {
@@ -34,12 +36,6 @@
     }
 }
 
-- (void)dealloc
-{
-    _applovinBannerView.adLoadDelegate = nil;
-    _applovinBannerView = nil;
-}
-
 #pragma mark -
 #pragma mark ALAdLoadDelegate methods
 
@@ -47,7 +43,7 @@
 {
     MPLogInfo(@"Successfully loaded AppLovin banner");
     
-    [self.delegate bannerCustomEvent:self didLoadAd:_applovinBannerView];
+    [self.delegate bannerCustomEvent:self didLoadAd:self.applovinBannerView];
     
 }
 

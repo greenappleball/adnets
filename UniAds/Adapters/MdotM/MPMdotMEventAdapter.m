@@ -8,17 +8,12 @@
 
 #import "MPMdotMEventAdapter.h"
 #import "MdotMRequestParameters.h"
+#import "MdotMAdapterData.h"
 #import "MdotMAdSizes.h"
 #import "MdotMAdView.h"
 #import "MPLogging.h"
 
 #pragma mark - Ad definitions
-
-#define AD_DOMAIN               @"com.MdotM_iOS_SDK"
-
-#define kKey                    @"key"
-#define kIdiom      @"idiom"
-#define vPhoneIdiom @"phone"
 
 #define DEFAULT_FRAME (![self is_iPhone] ? BANNER_728_90 : BANNER_320_50)
 
@@ -27,8 +22,7 @@
     MdotMAdView* _adBannerView;
 }
 
-@property(retain, nonatomic) NSDictionary* params;
-
+@property(retain, nonatomic) MdotMAdapterData* params;
 
 @end
 
@@ -55,28 +49,16 @@
 
 #pragma	mark -
 
-- (NSString*)requestKey
-{
-    NSString* defaultKey = @"68ffb3caed31a0e8692cdaa5f5a209e3";
-    NSString* result = defaultKey;
-    NSString* key = self.params[kKey];
-    if (nil != key) {
-        result = key;
-    }
-    return result;
-}
-
 - (BOOL)is_iPhone
 {
-    NSString* idiom = self.params[kIdiom];
-    return (idiom && [idiom isEqualToString:vPhoneIdiom]);
+    return [self.params isPhone];
 }
 
 #pragma	mark - super
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
-    self.params = info;
+    self.params = [MdotMAdapterData dataWithInfo:info];
     [self loadMdotMSDK];
 }
 
@@ -88,7 +70,12 @@
     [_adBannerView setAdViewDelegate:self];
 
     MdotMRequestParameters* requestParameters = [[MdotMRequestParameters alloc] init];
-    requestParameters.appKey = [self requestKey];
+    CLLocation* mLocation = [self.delegate location];
+    if (mLocation) {
+        requestParameters.longitude = mLocation.coordinate.longitude;
+        requestParameters.latitude = mLocation.coordinate.latitude;
+    }
+    requestParameters.appKey = [self.params key];
     NSString *isDebug = @"0";
 #ifdef DEBUG
     isDebug = @"1";

@@ -5,13 +5,15 @@ ad networks SDK for iOS
 
 There are:
 
-Google AdMob	v6.5.0	(https://developers.google.com/mobile-ads-sdk/download)
-AmazonAd	v1.6.1
-AppLoving	v2.0.95	(https://www.applovin.com)
-FlurryAds	v4.2.3	(http://www.flurry.com)
-MdotM		v2.0.12	(http://docs.mdotm.com/index.php/MdotM_iOS_SDK#General_Steps)
-MMSDK		v5.1.1	(http://mmedia.com/resources/sdk-api/)
-Smaato		v6.0.3	(http://www.smaato.com)
-SmartMad	v3.0.3	(http://www.smartmad.com)
-VunglePub	v1.4.1	(http://v.vungle.com/dev/ios)
-OneLouderAd    v2.1.2 (http://files.onelouder.com/ios-sdk.zip)
+#dependency 'Google AdMob’	(https://developers.google.com/mobile-ads-sdk/download)
+AmazonAd	v1.8.4
+AppLoving	v2.2.3	(https://www.applovin.com)
+#dependency ‘FlurryAds’	(http://www.flurry.com)
+MdotM		v2.0.13	(http://docs.mdotm.com/index.php/MdotM_iOS_SDK#General_Steps)
+#dependency 'MMSDK’	(http://mmedia.com/resources/sdk-api/)
+Smaato		v6.1.0	(http://www.smaato.com)
+SmartMad	v3.0.5	(http://www.smartmad.com)
+#doubling VunglePub	v1.4.3 vs v2.0.1	(http://v.vungle.com/dev/ios)
+OneLouderAd    v3.0.4 (http://files.onelouder.com/ios-sdk.zip)
+#dependency 'InMobi’ (http://www.inmobi.com/products/sdk/)
+AppSponsor	v3.0.1 (https://www.appsponsor.com)

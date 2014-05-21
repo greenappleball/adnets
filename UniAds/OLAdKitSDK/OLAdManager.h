@@ -42,7 +42,7 @@ typedef enum {
 - (NSDictionary*)placementWithName:(NSString*)name adTypeKey:(NSString*)adTypeKey;
 
 // Output version of SDK
-- (NSString*)getSDKVersion;
+- (NSString*)sdkVersion;
 
 -(void)reportEventWithName:(NSString*)eventName forPlacement:(NSDictionary*)placement withTargetParams:(NSDictionary*)targetParams;
 

@@ -1,12 +1,13 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '3.0.3'
-  s.platform = :ios
+  s.version = '3.4.3'
+  s.platform = :ios, '5.0'
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
   s.author = {'PI' => 'support@pi.com'}
-  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git'}
+  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git', :tag => '3.4.3'}
   s.homepage = 'https://developers.google.com/mobile-ads-sdk/download#downloadios'
+#  s.source_files  = 'UniAds/*.*'
   s.preserve_paths = 'UniAds/Adapters'
 
   s.default_subspec = 'Base'
@@ -14,13 +15,16 @@ Pod::Spec.new do |s|
 # Preferred subspec: fix adding the pod to git repos
 #
   s.subspec 'Base' do |ss|
-    ss.dependency 'UniAds/iAd'
+    ss.source_files  = 'UniAds/Adapters/*.{h,m,c,mm}'
     ss.dependency 'UniAds/OneLouderAd'
+    ss.dependency 'UniAds/iAd'
+    ss.requires_arc = true
   end
 
   s.subspec 'Pro' do |ss|
     ss.dependency 'UniAds/Base'
     ss.dependency 'UniAds/MdotM'
+    ss.dependency 'UniAds/Smaato'
   end
 
   s.subspec 'All' do |ss|
@@ -30,6 +34,8 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/FlurryAds'
     ss.dependency 'UniAds/VunglePub'
     ss.dependency 'UniAds/AmazonAd'
+    ss.dependency 'UniAds/InMobiAdapter'
+    ss.dependency 'UniAds/AppSponsor'
   end
 
 #
@@ -37,6 +43,7 @@ Pod::Spec.new do |s|
 #
   s.subspec 'SmartMadAdapter' do |ss|
     ss.source_files = 'UniAds/Adapters/SmartMad/*.*'
+    ss.requires_arc = true
   end
 
   s.subspec 'SmaatoAdapter' do |ss|
@@ -74,6 +81,17 @@ Pod::Spec.new do |s|
     ss.requires_arc = true
   end
 
+  s.subspec 'InMobiAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/InMobi/*.*'
+    ss.requires_arc = true
+    ss.dependency 'InMobiSDK'
+  end
+
+  s.subspec 'AppSponsorAdapter' do |ss|
+    ss.source_files = 'UniAds/Adapters/AppSponsor/*.*'
+    ss.requires_arc = true
+  end
+
 #
 # Ads Networks specifications
 #
@@ -83,12 +101,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'AdMob' do |ss|
-    ss.source_files = 'UniAds/AdMob/*.h'
+    ss.frameworks = 'AudioToolbox', 'MessageUI', 'SystemConfiguration', 'CoreGraphics', 'AdSupport', 'StoreKit'
     ss.dependency 'MoPubClient/AdMobAdapter'
   end
 
   s.subspec 'MMSDK' do |ss|
-    ss.source_files = 'UniAds/MMSDK/*.h'
+    ss.frameworks = 'QuartzCore','MediaPlayer','CoreGraphics','CoreLocation','MobileCoreServices','AudioToolbox','AVFoundation','SystemConfiguration','UIKit','Foundation'
     ss.dependency 'MoPubClient/MillenialAdapter'
   end
 
@@ -122,33 +140,27 @@ Pod::Spec.new do |s|
     ss.source_files = 'UniAds/AppLovin/headers/*.h'
     ss.preserve_paths = '**/*.a'
     ss.library = 'AppLovinSdk'
-    ss.frameworks = 'AdSupport','CoreTelephony','SystemConfiguration','StoreKit'
+    ss.frameworks = 'AdSupport','CoreTelephony','CoreGraphics','MediaPlayer','SystemConfiguration','StoreKit'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/AppLovin"' }
     ss.dependency 'UniAds/AppLovinAdapter'
   end
 
   s.subspec 'FlurryAds' do |ss|
-    ss.source_files = 'UniAds/FlurryAds/*.h'
-    ss.preserve_paths = '**/*.a'
-    ss.library = 'FlurryAds'
-    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/FlurryAds"' }
+    ss.dependency 'FlurrySDK/FlurryAds'
     ss.dependency 'UniAds/FlurryAdsAdapter'
   end
 
   s.subspec 'VunglePub' do |ss|
-    ss.source_files = 'UniAds/VunglePub/**/*.h'
-    ss.resources    = 'UniAds/VunglePub/resources/**/*.{png,bundle}'
-    ss.preserve_paths = '**/*.a','UniAds/VunglePub'
-    ss.library = 'vunglepub','z'
-    ss.frameworks = 'AVFoundation','CFNetwork','CoreGraphics','AudioToolbox','CoreMedia','Foundation','MediaPlayer','QuartzCore','SystemConfiguration','UIKit','AdSupport','StoreKit','CoreLocation'
-    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub/bin"',
-                      'HEADER_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/VunglePub"' }
+    ss.source_files = 'UniAds/VunglePub/vunglepub.framework/Headers/*.h'
+    ss.resources    = 'UniAds/VunglePub/Resources/*.*'
+    ss.preserve_paths = 'UniAds/VunglePub'
+    ss.library = 'z'
+    ss.frameworks = 'vunglepub','AVFoundation','CFNetwork','CoreGraphics','AudioToolbox','CoreMedia','Foundation','MediaPlayer','QuartzCore','SystemConfiguration','UIKit','AdSupport','StoreKit','CoreLocation'
+    ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/VunglePub"' }
     ss.dependency 'UniAds/VunglePubAdapter'
   end
 
   s.subspec 'AmazonAd' do |ss|
-#    ss.source_files = 'UniAds/AmazonAd/AmazonAd/*.h'
-#    ss.dependency 'UniAds/AmazonAdAdapter'
     ss.source_files = 'UniAds/AmazonAd/AmazonAd.framework/Headers/*.h'
     ss.preserve_paths = 'UniAds/AmazonAd/AmazonAd.framework'
     ss.frameworks = 'AmazonAd','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit'
@@ -160,17 +172,25 @@ Pod::Spec.new do |s|
     ss.source_files = 'UniAds/OLAdKitSDK/*.{h,m}'
     ss.resources    = 'UniAds/OLAdKitSDK/*.{png,bundle}'
     ss.preserve_paths = '**/*.a'
-    ss.library = 'OLAdKitSDK_debug'
+    ss.library = 'OLAdKitSDK'
     ss.frameworks = 'StoreKit','AdSupport','AudioToolbox','AVFoundation','CoreLocation','CoreGraphics','EventKit','EventKitUI','MediaPlayer','MobileCoreServices','QuartzCore','SystemConfiguration','Social','Accounts','CoreTelephony','MessageUI','iAd','AssetsLibrary'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(SRCROOT)/Pods/UniAds/UniAds/OLAdKitSDK"' }
+
     ss.dependency 'UniAds/OneLouderAdAdapter'
-
-    ss.dependency 'UniAds/AdMob'
-    ss.dependency 'UniAds/MMSDK'
     ss.dependency 'UniAds/Smaato'
-    ss.dependency 'UniAds/AmazonAd'
+    ss.dependency 'UniAds/MMSDK'
+    ss.dependency 'UniAds/AdMob'
+  end
 
-    ss.dependency 'JSONKit'
+  s.subspec 'AppSponsor' do |ss|
+    ss.source_files = 'UniAds/AppSponsor/AppSponsorSDK.framework/Headers/*.h'
+    ss.resources    = 'UniAds/AppSponsor/Resources/*.*'
+    ss.preserve_paths = 'UniAds/AppSponsor/AppSponsorSDK.framework'
+    ss.library = 'z','stdc++'
+    ss.frameworks = 'AppSponsorSDK','AudioToolbox','QuartzCore','OpenGLES','Security','CFNetwork','SystemConfiguration','CoreMotion','CoreGraphics','UIKit','Foundation'
+    ss.weak_frameworks = 'AdSupport','CoreLocation','StoreKit','Accelerate'
+    ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/AppSponsor"' }
+    ss.dependency 'UniAds/AppSponsorAdapter'
   end
 
   s.dependency 'MoPubClient'

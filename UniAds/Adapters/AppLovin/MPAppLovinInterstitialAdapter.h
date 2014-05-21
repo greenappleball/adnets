@@ -11,9 +11,6 @@
 #import "ALAdService.h"
 
 
-@interface MPAppLovinInterstitialAdapter : MPInterstitialCustomEvent <ALAdLoadDelegate, ALAdDisplayDelegate> {
-    ALInterstitialAd * _interstitialAd;
-    ALAd * _loadedAd;
-}
+@interface MPAppLovinInterstitialAdapter : MPInterstitialCustomEvent <ALAdLoadDelegate, ALAdDisplayDelegate>
 
 @end

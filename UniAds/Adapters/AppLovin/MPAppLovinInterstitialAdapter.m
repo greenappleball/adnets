@@ -9,6 +9,10 @@
 #import "MPAppLovinInterstitialAdapter.h"
 #import "MPLogging.h"
 
+@interface MPAppLovinInterstitialAdapter ()
+@property(strong, nonatomic) ALInterstitialAd* interstitialAd;
+@property(strong, nonatomic) ALAd* loadedAd;
+@end
 
 @implementation MPAppLovinInterstitialAdapter
 
@@ -17,20 +21,18 @@
     MPLogInfo(@"Requesting AppLovin interstitial...");
     
     ALAdService * adService = [[ALSdk shared] adService];
-    [adService loadNextAd: [ALAdSize sizeInterstitial]
-                 placedAt: nil
-                andNotify: self];
+    [adService loadNextAd: [ALAdSize sizeInterstitial] andNotify: self];
 }
  
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
-    if (_loadedAd)
+    if (self.loadedAd)
     {
         CGRect localFrame = rootViewController.view.frame;
-        _interstitialAd = [[ALInterstitialAd alloc] initWithFrame:localFrame];
-        _interstitialAd.adDisplayDelegate = self;
+        self.interstitialAd = [[ALInterstitialAd alloc] initWithFrame:localFrame];
+        self.interstitialAd.adDisplayDelegate = self;
         UIWindow * window = rootViewController.view.window;
-        [_interstitialAd showOver:window andRender:_loadedAd];
+        [self.interstitialAd showOver:window andRender:self.loadedAd];
     }
     else
     {
@@ -47,7 +49,7 @@
     MPLogInfo(@"Successfully loaded AppLovin interstitial.");
     
     // Save the newly loaded ad
-    _loadedAd = ad;
+    self.loadedAd = ad;
     
     [self.delegate interstitialCustomEvent:self didLoadAd:ad];
 }
@@ -66,6 +68,7 @@
 {
     MPLogInfo(@"AppLovin interstitial was dismissed");
     
+    [self.delegate interstitialCustomEventWillDisappear: self];
     [self.delegate interstitialCustomEventDidDisappear:self];
 }
 
@@ -73,20 +76,14 @@
 -(void)ad:(ALAd *)ad wasDisplayedIn:(UIView *)view
 {
     MPLogInfo(@"AppLovin interstitial was displayed");
-    [self.delegate interstitialCustomEventDidAppear:self];
+    [self.delegate interstitialCustomEventWillAppear: self];
+    [self.delegate interstitialCustomEventDidAppear: self];
 }
 
 -(void)ad:(ALAd *)ad wasClickedIn:(UIView *)view
 {
     MPLogInfo(@"AppLovin interstitial was clicked");
-    [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
-}
-
-- (void)dealloc
-{
-    _interstitialAd.adDisplayDelegate = nil;
-    _interstitialAd = nil;
-    _loadedAd = nil;
+    [self.delegate interstitialCustomEventWillLeaveApplication: self];
 }
 
 @end

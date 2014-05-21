@@ -120,8 +120,9 @@ typedef enum {
 		[[NSNotificationCenter defaultCenter] removeObserver:_didFailObserver], _didFailObserver = nil;
 		// ...
 	}
- @warning Use either the above described notifications or the `-asyncLoadNewBannerWithCompletionHandler:` Method. Using will result in bad user experience. 
- Please note, that you're **not** forced to implement this method.<br /><br />
+ 
+ Use either the above described notifications or the `-asyncLoadNewBannerWithCompletionHandler:` Method. Using **both** will result in bad user experience.<br />Please note, that you're **not** forced to implement this method.
+ 
  <h3>AdWhirl Integration</h3>
  In case you're using [AdWhirl](https://www.adwhirl.com) take a look at the following example.
 	- (void)somaCall:(AdWhirlView *)aView {	
@@ -179,6 +180,7 @@ typedef enum {
 	@methodgroup    Animations
 
 	@abstract       Animation Type which should be used.
+	@discussion		Default value is `kSOMAAnimationTypeRandom`.
     @availability	Available since iSoma 4.0 and later.
 */
 @property (nonatomic) SOMAAnimationType animationType;
@@ -188,6 +190,7 @@ typedef enum {
 	@methodgroup    Animations
 
 	@abstract       Animation's Direction which should be used.
+	@discussion		Default value is `kSOMAAnimationDirectionRandom`.
     @availability	Available since iSoma 4.0 and later.
 */
 @property (nonatomic) SOMAAnimationDirection animationDirection;

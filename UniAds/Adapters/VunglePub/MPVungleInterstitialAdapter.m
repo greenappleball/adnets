@@ -9,6 +9,9 @@
 #import "MPLogging.h"
 #import "MPVungleInterstitialAdapter.h"
 
+@interface MPVungleInterstitialAdapter ()
+@property (nonatomic, assign) BOOL respondedToStatusEvent;
+@end
 
 @implementation MPVungleInterstitialAdapter
 
@@ -16,14 +19,32 @@
 
 - (void)dealloc
 {
-    [VGVunglePub setDelegate:nil];
+    if ([VGVunglePub delegate] == self) {
+        [VGVunglePub setDelegate:nil];
+    }
 }
+
+#pragma mark - private
+
+- (void)startingVunglePubWithAdapterData:(VunglePubAdapterData*)adapterData
+{
+    self.respondedToStatusEvent = NO;
+    [VGVunglePub setDelegate:self];
+    if (![VGVunglePub running]) {
+        [VGVunglePub startWithPubAppID:adapterData.appId userData:adapterData.vgUserData];
+    } else {
+        [self.delegate interstitialCustomEvent:self didLoadAd:nil];
+    }
+}
+
+#pragma mark - super
 
 - (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
-    [VGVunglePub setDelegate:self];
     MPLogInfo(@"Requesting interstitial...\n,%@", info);
-    [self.delegate interstitialCustomEvent:self didLoadAd:nil];
+    VunglePubAdapterData* params = [VunglePubAdapterData dataWithInfo:info];
+    params.vgUserData.locationEnabled = (nil != [self.delegate location]);
+    [self startingVunglePubWithAdapterData:params];
 }
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
@@ -32,7 +53,6 @@
         [VGVunglePub playModalAd:rootViewController animated:TRUE];
     } else {
         [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
-        [self.delegate interstitialCustomEventDidExpire:self];
     }
 }
 
@@ -42,12 +62,25 @@
 {}
 
 -(void)vungleStatusUpdate:(VGStatusData*)statusData
-{}
+{
+    // this is a continuous polling update from Vungle, we only want to notify our delegate once per ad "request"
+    if (!self.respondedToStatusEvent) {
+        if(statusData.status == VGStatusOkay) {
+            if([VGVunglePub adIsAvailable]) {
+                self.respondedToStatusEvent = YES;
+                [self.delegate interstitialCustomEvent:self didLoadAd:nil];
+            }
+        } else {
+            self.respondedToStatusEvent = YES;
+            [self.delegate interstitialCustomEvent:self didFailToLoadAdWithError:nil];
+        }
+    }
+}
 
 -(void)vungleViewDidDisappear:(UIViewController*)viewController
 {
+    [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];
-    [VGVunglePub setDelegate:nil];
 }
 
 -(void)vungleViewWillAppear:(UIViewController*)viewController
