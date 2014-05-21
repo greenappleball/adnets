@@ -96,18 +96,18 @@ Pod::Spec.new do |s|
 # Ads Networks specifications
 #
   s.subspec 'iAd' do |ss|
-    ss.dependency 'MoPubClient/iAdAdapter'
+    ss.dependency 'mopub-ios-sdk/iAd'
     ss.frameworks = 'iAd'
   end
 
   s.subspec 'AdMob' do |ss|
     ss.frameworks = 'AudioToolbox', 'MessageUI', 'SystemConfiguration', 'CoreGraphics', 'AdSupport', 'StoreKit'
-    ss.dependency 'MoPubClient/AdMobAdapter'
+    ss.dependency 'mopub-ios-sdk/AdMob'
   end
 
   s.subspec 'MMSDK' do |ss|
-    ss.frameworks = 'QuartzCore','MediaPlayer','CoreGraphics','CoreLocation','MobileCoreServices','AudioToolbox','AVFoundation','SystemConfiguration','UIKit','Foundation'
-    ss.dependency 'MoPubClient/MillenialAdapter'
+#    ss.frameworks = 'QuartzCore','MediaPlayer','CoreGraphics','CoreLocation','MobileCoreServices','AudioToolbox','AVFoundation','SystemConfiguration','UIKit','Foundation'
+#    ss.dependency 'mopub-ios-sdk/MillenialAdapter'
   end
 
   s.subspec 'SmartMad' do |ss|
@@ -193,6 +193,6 @@ Pod::Spec.new do |s|
     ss.dependency 'UniAds/AppSponsorAdapter'
   end
 
-  s.dependency 'MoPubClient'
+  s.dependency 'mopub-ios-sdk'
 
 end
