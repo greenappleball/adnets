@@ -64,6 +64,7 @@ Pod::Spec.new do |s|
 #
   s.subspec 'AdMob' do |ss|
     ss.dependency 'mopub-ios-sdk/AdMob'
+    ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '' }
   end
 
 #
