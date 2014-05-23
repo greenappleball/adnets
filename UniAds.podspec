@@ -70,17 +70,16 @@ Pod::Spec.new do |s|
 # Millennial
 #
    s.subspec 'MillennialSDK' do |ss|
-#    ss.source_files = 'UniAds/SDKs/MMSDK/Headers/*.h'
-#    ss.resources    = 'UniAds/SDKs/MMSDK/Resources/**/*.{strings}'
+    ss.source_files = 'UniAds/SDKs/MMSDK/MillennialMedia.framework/Headers/*.h'
     ss.header_dir = 'MillennialMedia'
-    ss.dependency 'MillennialMediaSDK'
+#    ss.dependency 'MillennialMediaSDK'
     ss.dependency 'UniAds/OLAdSDK'
   end
 
  s.subspec 'Millennial' do |ss|
     ss.source_files = 'UniAds/Adapters/Millennial/*.*'
     ss.dependency 'UniAds/MillennialSDK'
-    ss.requires_arc = true
+    ss.requires_arc = false
   end
 
 #
