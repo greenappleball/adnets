@@ -87,7 +87,7 @@ Pod::Spec.new do |s|
 # OLAd
 #
   s.subspec 'OLAdSDK' do |ss|
-    ss.source_files = 'UniAds/SDKs/OLAdKitSDK.zip','UniAds/SDKs/OLAdKitSDK/*.{h,m}'
+    ss.source_files = 'UniAds/SDKs/OLAdKitSDK/*.{h,m}'
     ss.resources    = 'UniAds/SDKs/OLAdKitSDK/*.{png,bundle}'
     ss.preserve_paths = 'UniAds/SDKs/OLAdKitSDK/*.{a,txt}'
     ss.library = 'OLAdKitSDK'
@@ -230,6 +230,7 @@ Pod::Spec.new do |s|
     ss.requires_arc = true
   end
 
+  s.prepare_command = '/usr/bin/unzip ./UniAds/SDKs/OLAdKitSDK.zip -d ./UniAds/SDKs/'
   s.dependency 'mopub-ios-sdk', '~>2.1.0'
 
 end
