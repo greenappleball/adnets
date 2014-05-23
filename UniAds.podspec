@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 # Preferred subspec: fix adding the pod to git repos
 #
   s.subspec 'Base' do |ss|
-#    ss.dependency 'UniAds/Millennial'
+    ss.dependency 'UniAds/Millennial'
     ss.dependency 'UniAds/Smaato'
     ss.dependency 'UniAds/AdMob'
     ss.dependency 'UniAds/OLAd'
@@ -69,23 +69,25 @@ Pod::Spec.new do |s|
 #
 # Millennial
 #
-#   s.subspec 'MillennialSDK' do |ss|
+   s.subspec 'MillennialSDK' do |ss|
 #    ss.source_files = 'UniAds/SDKs/MMSDK/Headers/*.h'
 #    ss.resources    = 'UniAds/SDKs/MMSDK/Resources/**/*.{strings}'
-#    ss.dependency 'UniAds/OLAdSDK'
-#  end
-#
-# s.subspec 'Millennial' do |ss|
-#    ss.source_files = 'UniAds/Adapters/Millennial/*.*'
-#    ss.dependency 'UniAds/MillennialSDK'
-#    ss.requires_arc = true
-#  end
+    ss.header_dir = 'MillennialMedia'
+    ss.dependency 'MillennialMediaSDK'
+    ss.dependency 'UniAds/OLAdSDK'
+  end
+
+ s.subspec 'Millennial' do |ss|
+    ss.source_files = 'UniAds/Adapters/Millennial/*.*'
+    ss.dependency 'UniAds/MillennialSDK'
+    ss.requires_arc = true
+  end
 
 #
 # OLAd
 #
   s.subspec 'OLAdSDK' do |ss|
-    ss.source_files = 'UniAds/SDKs/OLAdKitSDK/*.{h,m}'
+    ss.source_files = 'UniAds/SDKs/OLAdKitSDK.zip','UniAds/SDKs/OLAdKitSDK/*.{h,m}'
     ss.resources    = 'UniAds/SDKs/OLAdKitSDK/*.{png,bundle}'
     ss.preserve_paths = 'UniAds/SDKs/OLAdKitSDK/*.{a,txt}'
     ss.library = 'OLAdKitSDK'
@@ -169,7 +171,6 @@ Pod::Spec.new do |s|
 # Vungle
 #
   s.subspec 'VunglePubSDK' do |ss|
-#    ss.source_files = 'UniAds/SDKs/VunglePub/vunglepub.framework/Headers/*.h'
     ss.resources    = 'UniAds/SDKs/VunglePub/Resources/*.*'
     ss.preserve_paths = 'UniAds/SDKs/VunglePub/vunglepub.framework'
     ss.library = 'z'
@@ -188,7 +189,6 @@ Pod::Spec.new do |s|
 # Amazon
 #
   s.subspec 'AmazonAdSDK' do |ss|
-#    ss.source_files = 'UniAds/SDKs/AmazonAd/AmazonAd.framework/Headers/*.h'
     ss.preserve_paths = 'UniAds/SDKs/AmazonAd/AmazonAd.framework'
     ss.frameworks = 'AmazonAd','AdSupport','CoreGraphics','CoreLocation','Foundation','MediaPlayer','QuartzCore','StoreKit','SystemConfiguration','UIKit'
     ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/SDKs/AmazonAd"' }
@@ -215,7 +215,6 @@ Pod::Spec.new do |s|
 # AppSponsor
 #
   s.subspec 'AppSponsorSDK' do |ss|
-#    ss.source_files = 'UniAds/SDKs/AppSponsor/AppSponsorSDK.framework/Headers/*.h'
     ss.resources    = 'UniAds/SDKs/AppSponsor/Resources/*.*'
     ss.preserve_paths = 'UniAds/SDKs/AppSponsor/AppSponsorSDK.framework'
     ss.library = 'z','stdc++'
