@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
     ss.resources    = 'UniAds/SDKs/OLAdKitSDK/*.{png,bundle}'
     ss.preserve_paths = 'UniAds/SDKs/OLAdKitSDK/*.{a,txt}'
     ss.library = 'OLAdKitSDK'
-    ss.frameworks = 'StoreKit','AdSupport','AudioToolbox','AVFoundation','CoreLocation','CoreGraphics','EventKit','EventKitUI','MediaPlayer','MobileCoreServices','QuartzCore','SystemConfiguration','Social','Accounts','CoreTelephony','MessageUI','iAd','AssetsLibrary'
+    ss.frameworks = 'PassKit','StoreKit','AdSupport','AudioToolbox','AVFoundation','CoreLocation','CoreGraphics','EventKit','EventKitUI','MediaPlayer','MobileCoreServices','QuartzCore','SystemConfiguration','Social','Accounts','CoreTelephony','MessageUI','iAd','AssetsLibrary'
     ss.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/SDKs/OLAdKitSDK"' }
   end
 
