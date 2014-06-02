@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name = 'UniAds'
-  s.version = '3.5.0'
+  s.version = '3.5.1'
   s.platform = :ios, '6.0'
   s.license = {:type => 'commercial',:text =>'text goes here'}
   s.summary = 'An unofficial clone of some ad SDK for iOS.'
   s.author = {'PI' => 'support@pi.com'}
-  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git', :tag => '3.5.0'}
+  s.source = {:git => 'ssh://git@git.postindustria.com/adnets.git', :tag => '3.5.1'}
   s.homepage = 'http://lifelikeapps.com'
   s.default_subspec = 'Base'
   s.requires_arc = false
@@ -70,10 +70,9 @@ end
 # Millennial
 #
    s.subspec 'MillennialSDK' do |ss|
-    #ss.source_files = 'UniAds/SDKs/MMSDK/MillennialMedia.framework/Headers/*.h'
-    #ss.header_dir = 'MillennialMedia'
-    #ss.dependency 'UniAds/OLAdSDK'
-    ss.dependency 'MillennialMediaSDK', '~> 5.2.0'
+    ss.preserve_paths = 'UniAds/SDKs/MMSDK/MillennialMedia.framework'
+    ss.frameworks = 'MillennialMedia','AdSupport','AudioToolbox','AVFoundation','CFNetwork','CoreGraphics','CoreLocation','Foundation','MediaPlayer','MobileCoreServices','PassKit','QuartzCore','Security','Social','StoreKit','SystemConfiguration','UIKit'
+    ss.xcconfig  =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/UniAds/UniAds/SDKs/MMSDK"' }
   end
 
  s.subspec 'Millennial' do |ss|
