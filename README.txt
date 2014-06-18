@@ -18,3 +18,4 @@ OneLouderAd    v3.1.01 (http://files.onelouder.com/ios-sdk.zip)
 #dependency 'InMobi’ (http://www.inmobi.com/products/sdk/)
 AppSponsor	v3.0.1 (https://www.appsponsor.com)
 mopub-ios-sdk	v2.1.0
+Rubicon		v2.6.1 (http://kb.rubiconproject.com/index.php/Mobile_SDK_Resources)
